@@ -44,10 +44,22 @@ namespace BankApplication
                 }
             }
         }
+        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
+        {
+            RegStart();
+            Close();
+        }
         public void LogIn()
         {
             MainWindow main = new MainWindow();
             main.Show();
         }
+        public void RegStart()
+        {
+            Register register = new Register();
+            register.Show();
+        }
+
+        
     }
 }
