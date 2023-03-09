@@ -19,5 +19,6 @@ namespace BankApplication
         public DbSet<Clients> Client  { get; set;}
         public DbSet<Account> Account { get; set; }
         public DbSet<User> Login{ get; set;}
+        public DbSet<Logs> Logs { get; set;}
     }
 }

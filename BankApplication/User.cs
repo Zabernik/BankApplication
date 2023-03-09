@@ -45,4 +45,11 @@ namespace BankApplication
         public string Id_Transfer { get; set;}
         public DateOnly DateTransfer { get; set;}
     }
+    public class Logs
+    {
+        [Key]
+        public int Number_Error { get; set;}
+        public int IdError { get; set;}
+        public DateOnly DataError { get; set;}
+    }
 }

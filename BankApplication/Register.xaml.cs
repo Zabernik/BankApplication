@@ -27,7 +27,45 @@ namespace BankApplication
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
-            
+            switch (CheckRequirements())
+            {
+                case 1:
+                    Success();
+                    break;
+                case 2:
+                    //Error id = 1; Too long Name
+                    MessageBox.Show("");
+                    break;
+                case 3:
+                    //Error id = 2; Too short Name
+                    MessageBox.Show("");
+                    break;
+                case 4:
+                    //Error id = 4; Too long LastName
+                    MessageBox.Show("");
+                    break;
+                case 5:
+                    //Error id = 5; Too short LastName
+                    MessageBox.Show("");
+                    break;
+                case 6:
+                    //Error id = 6; Wrong PESEL
+                    MessageBox.Show("");
+                    break;
+                case 7:
+                    //Error id = 7; Wrong ID Number
+                    MessageBox.Show("Error 7");
+                    break;
+                case 8:
+                    //Error id = 8; 
+                    MessageBox.Show("");
+                    break;
+                case 9:
+                    //Error id = 9;
+                    MessageBox.Show("");
+                    break;
+            }
+
         }
 
         private void CheckBoxPolicy_Checked(object sender, RoutedEventArgs e)
@@ -41,7 +79,7 @@ namespace BankApplication
         public void ButtonCheck()
         {
 
-            if (StatusNeedChecked() == true && !String.IsNullOrEmpty(TextBoxName.Text) && !String.IsNullOrEmpty(TextBoxLastName.Text) && !String.IsNullOrEmpty(TextBoxPESEL.Text) && !String.IsNullOrEmpty(TextBoxNrID.Text) && !String.IsNullOrEmpty(TextBoxUser.Text) && !String.IsNullOrEmpty(TextBoxPass.Text))
+            if (StatusAllChecked(false) == true && !String.IsNullOrEmpty(TextBoxName.Text) && !String.IsNullOrEmpty(TextBoxLastName.Text) && !String.IsNullOrEmpty(TextBoxPESEL.Text) && !String.IsNullOrEmpty(TextBoxNrID.Text) && !String.IsNullOrEmpty(TextBoxUser.Text) && !String.IsNullOrEmpty(TextBoxPass.Text))
             {
                 ButtonRegister.IsEnabled = true;
             }
@@ -72,11 +110,11 @@ namespace BankApplication
         }
         public bool StatusAllChecked(bool Need)
         {
-            if (Need == false && CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && CheckBoxPolicy3.IsChecked == true && CheckBoxPolicy4.IsChecked == true)
+            if (Need == true && CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && CheckBoxPolicy3.IsChecked == true && CheckBoxPolicy4.IsChecked == true)
             {
                 return true;
             }
-            if (Need == true && CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && CheckBoxPolicy3.IsChecked == true && CheckBoxPolicy4.IsChecked == true)
+            if (Need == false && CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && CheckBoxPolicy3.IsChecked == true)
             {
                 return true;
             }
@@ -84,6 +122,42 @@ namespace BankApplication
             {
                 return false;
             }
+        }
+
+        public int CheckRequirements()
+        {
+            if (TextBoxName.Text.Length > 12)
+            {
+                return 2;
+            }
+            if (TextBoxName.Text.Length < 3)
+            {
+                return 3;
+            }
+            if (TextBoxLastName.Text.Length > 16)
+            {
+                return 4;
+            }
+            if (TextBoxLastName.Text.Length < 2)
+            {
+                return 5;
+            }
+            if (TextBoxPESEL.Text.Length != 11)
+            {
+                return 6;
+            }
+            //if (TextBoxNrID.Text.Length != 9 || !(System.Text.RegularExpressions.Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")) || (System.Text.RegularExpressions.Regex.IsMatch(TextBoxNrID.Text.Substring(4), "^[a-zA-Z ]*$")))
+            //{
+            //    return 7;
+            //}
+
+
+
+            return 1;
+        }
+        private void Success()
+        {
+
         }
     }
 }
