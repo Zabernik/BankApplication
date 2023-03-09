@@ -34,15 +34,6 @@ namespace BankApplication
         {
             ButtonCheck();
         }
-
-        private void CheckBoxPolicy2_Checked(object sender, RoutedEventArgs e)
-        {
-            ButtonCheck();
-        }
-        private void CheckBoxPolicy2_UnChecked(object sender, RoutedEventArgs e) 
-        { 
-            ButtonCheck();
-        }
         private void CheckBoxPolicy_UnChecked(object sender, RoutedEventArgs e)
         {
             ButtonCheck();
@@ -50,7 +41,7 @@ namespace BankApplication
         public void ButtonCheck()
         {
 
-            if (CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && !String.IsNullOrEmpty(TextBoxName.Text) && !String.IsNullOrEmpty(TextBoxLastName.Text) && !String.IsNullOrEmpty(TextBoxPESEL.Text) && !String.IsNullOrEmpty(TextBoxNrID.Text) && !String.IsNullOrEmpty(TextBoxUser.Text) && !String.IsNullOrEmpty(TextBoxPass.Text))
+            if (StatusNeedChecked() == true && !String.IsNullOrEmpty(TextBoxName.Text) && !String.IsNullOrEmpty(TextBoxLastName.Text) && !String.IsNullOrEmpty(TextBoxPESEL.Text) && !String.IsNullOrEmpty(TextBoxNrID.Text) && !String.IsNullOrEmpty(TextBoxUser.Text) && !String.IsNullOrEmpty(TextBoxPass.Text))
             {
                 ButtonRegister.IsEnabled = true;
             }
@@ -64,30 +55,35 @@ namespace BankApplication
         {
             ButtonCheck();
         }
-
-        private void TextBoxLastName_TextChanged(object sender, TextChangedEventArgs e)
+        private void CheckBoxAll_Checked(object sender, RoutedEventArgs e)
         {
-            ButtonCheck();
+            CheckedAll(true);
         }
-
-        private void TextBoxPESEL_TextChanged(object sender, TextChangedEventArgs e)
+        private void CheckBoxAll_UnChecked(object sender, RoutedEventArgs e)
         {
-            ButtonCheck();
+            CheckedAll(false);
         }
-
-        private void TextBoxNrID_TextChanged(object sender, TextChangedEventArgs e)
+        public void CheckedAll(bool x)
         {
-            ButtonCheck();
+            CheckBoxPolicy.IsChecked = x;
+            CheckBoxPolicy2.IsChecked = x;
+            CheckBoxPolicy3.IsChecked = x;
+            CheckBoxPolicy4.IsChecked = x;
         }
-
-        private void TextBoxUser_TextChanged(object sender, TextChangedEventArgs e)
+        public bool StatusAllChecked(bool Need)
         {
-            ButtonCheck();
-        }
-
-        private void TextBoxPass_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ButtonCheck();
+            if (Need == false && CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && CheckBoxPolicy3.IsChecked == true && CheckBoxPolicy4.IsChecked == true)
+            {
+                return true;
+            }
+            if (Need == true && CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && CheckBoxPolicy3.IsChecked == true && CheckBoxPolicy4.IsChecked == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
