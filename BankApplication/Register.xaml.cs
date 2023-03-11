@@ -1,8 +1,12 @@
-﻿using System;
+﻿using BankApplication.Enums;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +27,9 @@ namespace BankApplication
         public Register()
         {
             InitializeComponent();
+            StrenghtIndicator(TextBoxPass.Text);
         }
+        public Enums.PasswordStrenght ScorePass { get; set; }
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
@@ -57,12 +63,12 @@ namespace BankApplication
                     MessageBox.Show("Error 7");
                     break;
                 case 8:
-                    //Error id = 8; 
-                    MessageBox.Show("");
+                    //Error id = 8; Wrong NickName
+                    MessageBox.Show("Error 8");
                     break;
                 case 9:
-                    //Error id = 9;
-                    MessageBox.Show("");
+                    //Error id = 9; Too weak Password
+                    MessageBox.Show("Error 9");
                     break;
             }
 
@@ -83,8 +89,8 @@ namespace BankApplication
             {
                 ButtonRegister.IsEnabled = true;
             }
-            else 
-            { 
+            else
+            {
                 ButtonRegister.IsEnabled = false;
             }
         }
@@ -146,10 +152,18 @@ namespace BankApplication
             {
                 return 6;
             }
-            //if (TextBoxNrID.Text.Length != 9 || !(System.Text.RegularExpressions.Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")) || (System.Text.RegularExpressions.Regex.IsMatch(TextBoxNrID.Text.Substring(4), "^[a-zA-Z ]*$")))
-            //{
-            //    return 7;
-            //}
+            if (TextBoxNrID.Text.Length != 9 || !(Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")))
+            {
+                return 7;
+            }
+            if (TextBoxUser.Text.Length > 16 || !TextBoxUser.Text.All(Char.IsLetter))
+            {
+                return 8;
+            }
+            if (CheckStrength(TextBoxPass.Text) < PasswordStrenght.Medium)
+            {
+                return 9;
+            }
 
 
 
@@ -159,5 +173,52 @@ namespace BankApplication
         {
 
         }
+        public static PasswordStrenght CheckStrength(string password)
+        {
+            Regex Level3 = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{9,}$");
+            Regex Level2 = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{7,}$");
+            Regex Level1 = new Regex("^(?=.*?[a-z])(?=.*?[0-9]).{1,}$");
+
+            if (password.Length < 1)
+                return PasswordStrenght.Blank;
+            if (Level3.IsMatch(password))
+                return PasswordStrenght.Strong;
+            if (Level2.IsMatch(password))
+                return PasswordStrenght.Medium;
+            if (Level1.IsMatch(password))
+                return PasswordStrenght.Weak;
+
+            return PasswordStrenght.Weak;
+        }
+
+        private void TextBoxPass_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ButtonCheck();
+            StrenghtIndicator(TextBoxPass.Text);
+        }
+        private void StrenghtIndicator(string Input)
+        {
+            switch (CheckStrength(Input))
+            {
+                case PasswordStrenght.Blank:
+                    ProgressPass.Value = 0;
+
+                    break;
+                case PasswordStrenght.Weak:
+                    ProgressPass.Value = 33;
+                    ProgressPass.Foreground = Brushes.Red;
+                    break;
+                case PasswordStrenght.Medium:
+                    ProgressPass.Value = 66;
+                    ProgressPass.Foreground = Brushes.Orange;
+                    break;
+                case PasswordStrenght.Strong:
+                    ProgressPass.Value = 100;
+                    ProgressPass.Foreground = Brushes.Green;
+                    break;
+            }
+            TextBoxPassStrenght.Text = Convert.ToString(CheckStrength(Input));
+        }
     }
+
 }
