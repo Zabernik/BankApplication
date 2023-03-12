@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankApplication
 {
@@ -134,44 +135,61 @@ namespace BankApplication
         {
             if (TextBoxName.Text.Length > 12)
             {
+                AddLog(2, DateTime.Now);
                 return 2;
             }
             if (TextBoxName.Text.Length < 3)
             {
+                AddLog(3, DateTime.Now);
                 return 3;
             }
             if (TextBoxLastName.Text.Length > 16)
             {
+                AddLog(4, DateTime.Now);
                 return 4;
             }
             if (TextBoxLastName.Text.Length < 2)
             {
+                AddLog(5, DateTime.Now);
+
                 return 5;
             }
             if (TextBoxPESEL.Text.Length != 11)
             {
+                AddLog(6, DateTime.Now);
                 return 6;
             }
             if (TextBoxNrID.Text.Length != 9 || !(Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")))
             {
+                AddLog(7, DateTime.Now);
                 return 7;
             }
             if (TextBoxUser.Text.Length > 16 || !TextBoxUser.Text.All(Char.IsLetter))
             {
+                AddLog(8, DateTime.Now);
                 return 8;
             }
             if (CheckStrength(TextBoxPass.Text) < PasswordStrenght.Medium)
             {
+                AddLog(9, DateTime.Now);
                 return 9;
             }
-
-
-
             return 1;
         }
         private void Success()
         {
-
+            using (SQLite conn = new SQLite())
+            {
+                var newClient = new Clients { FirstName = TextBoxName.Text, LastName = TextBoxLastName.Text, PESEL = TextBoxPESEL.Text, NumberID = TextBoxNrID.Text };
+                conn.Add<Clients>(newClient);
+                conn.SaveChanges(); 
+                var newUser = new User { UserName = TextBoxUser.Text, Password = TextBoxPass.Text};
+                conn.Add<User>(newUser);
+                conn.SaveChanges();
+                var newAccount = new Account {Balance = 0, NumberAccount = "1000", Active = false, Debet = 0 };
+                conn.Add<Account>(newAccount);
+                conn.SaveChanges();
+            }
         }
         public static PasswordStrenght CheckStrength(string password)
         {
@@ -219,6 +237,15 @@ namespace BankApplication
             }
             TextBoxPassStrenght.Text = Convert.ToString(CheckStrength(Input));
         }
-    }
 
+        private void AddLog(int Id, DateTime date) 
+        {
+            using (SQLite conn = new SQLite())
+            {
+                var newLog = new Logs {IdError = Id, DataError = date};
+                conn.Add<Logs>(newLog);
+                conn.SaveChanges();
+            }
+        }
+    }
 }

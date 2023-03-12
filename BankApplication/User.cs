@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +11,20 @@ namespace BankApplication
 {
     public class User
     {
+        [Key]
         public string UserName { get; set; }
-        public string PIN { get; set; }
+        public string? PIN { get; set; }
         public string Password { get; set; }
 
-        [Key]
-        public int Id_User { get; set; }
+        [ForeignKey("Clients")]
+        public Clients Id_User { get; set; }
     }
     public class Account
     {
-        [Key]
-        public int Id_User { get; set;}
+        [ForeignKey ("Clients")]
+        public Clients Id_User { get; set;}
         public decimal Balance { get; set;}
+        [Key]
         public string NumberAccount { get; set;}
         public decimal Debet { get; set;}
         public bool Active { get; set;}
@@ -36,20 +40,21 @@ namespace BankApplication
     }
     public class History
     {
-        public int Id_User { get; set; }
+        [ForeignKey("Clients")]
+        public Clients Id_User { get; set; }
         public string NumberAccountSender { get; set; }
         public string NumberAccountRecipient { get; set; }
         public decimal Amount { get; set; }
         public string Title { get; set;}
         [Key]
         public string Id_Transfer { get; set;}
-        public DateOnly DateTransfer { get; set;}
+        public DateTime DateTransfer { get; set;}
     }
     public class Logs
     {
         [Key]
         public int Number_Error { get; set;}
         public int IdError { get; set;}
-        public DateOnly DataError { get; set;}
+        public DateTime DataError { get; set;}
     }
 }

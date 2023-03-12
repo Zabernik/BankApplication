@@ -58,8 +58,6 @@ namespace BankApplication
         {
             Register register = new Register();
             register.Show();
-        }
-
-        
+        }      
     }
 }
