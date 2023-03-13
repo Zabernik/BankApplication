@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
+using System.Media;
 
 namespace BankApplication
 {
@@ -41,35 +42,43 @@ namespace BankApplication
                     break;
                 case 2:
                     //Error id = 1; Too long Name
-                    MessageBox.Show("");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono za długie imię", "Error #1", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case 3:
                     //Error id = 2; Too short Name
-                    MessageBox.Show("");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono za krótkie imię", "Error #2", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case 4:
                     //Error id = 4; Too long LastName
-                    MessageBox.Show("");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono za długie nazwisko", "Error #4", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case 5:
                     //Error id = 5; Too short LastName
-                    MessageBox.Show("");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono za krótkie nazwisko", "Error #4", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case 6:
                     //Error id = 6; Wrong PESEL
-                    MessageBox.Show("");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono błędny PESEL lub już taki został zarejestrowany", "Error #5", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case 7:
                     //Error id = 7; Wrong ID Number
-                    MessageBox.Show("Error 7");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono błedny numer dowodu lub już taki został zarejestrowany", "Error #6", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case 8:
                     //Error id = 8; Wrong NickName
-                    MessageBox.Show("Error 8");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono za długi nick, użyto innych znaków niż liter lub taki nick już został zarejestrowany", "Error #7", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 case 9:
                     //Error id = 9; Too weak Password
-                    MessageBox.Show("Error 9");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Wprowadzono za słabe hasło", "Error #8", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
             }
 
@@ -154,17 +163,17 @@ namespace BankApplication
 
                 return 5;
             }
-            if (TextBoxPESEL.Text.Length != 11)
+            if (TextBoxPESEL.Text.Length != 11 || TestPESELAcc(TextBoxPESEL.Text) == true)
             {
                 AddLog(6, DateTime.Now);
                 return 6;
             }
-            if (TextBoxNrID.Text.Length != 9 || !(Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")))
+            if (TextBoxNrID.Text.Length != 9 || !(Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")) || TestIdCard(TextBoxNrID.Text) == true)
             {
                 AddLog(7, DateTime.Now);
                 return 7;
             }
-            if (TextBoxUser.Text.Length > 16 || !TextBoxUser.Text.All(Char.IsLetter))
+            if (TextBoxUser.Text.Length > 16 || !TextBoxUser.Text.All(Char.IsLetter) || TestNickName(TextBoxUser.Text) == true)
             {
                 AddLog(8, DateTime.Now);
                 return 8;
@@ -182,14 +191,20 @@ namespace BankApplication
             {
                 var newClient = new Clients { FirstName = TextBoxName.Text, LastName = TextBoxLastName.Text, PESEL = TextBoxPESEL.Text, NumberID = TextBoxNrID.Text };
                 conn.Add<Clients>(newClient);
-                conn.SaveChanges(); 
-                var newUser = new User { UserName = TextBoxUser.Text, Password = TextBoxPass.Text};
+                conn.SaveChanges();
+
+                var newUser = new User { UserName = TextBoxUser.Text, Password = TextBoxPass.Text, Id_User = ReadId() };
                 conn.Add<User>(newUser);
                 conn.SaveChanges();
-                var newAccount = new Account {Balance = 0, NumberAccount = "1000", Active = false, Debet = 0 };
+
+                var newAccount = new Account { Balance = 0, NumberAccount = CreateNumberAcc(ReadId()), Active = false, Debet = 0, Id_User = ReadId() };
                 conn.Add<Account>(newAccount);
                 conn.SaveChanges();
             }
+
+            Login log = new Login();
+            log.Show();
+            Close();
         }
         public static PasswordStrenght CheckStrength(string password)
         {
@@ -246,6 +261,115 @@ namespace BankApplication
                 conn.Add<Logs>(newLog);
                 conn.SaveChanges();
             }
+        }
+        private int ReadId()
+        {
+            int x = 0;
+            using (SQLite ctx = new SQLite())
+            {
+                var query = (from c in ctx.Client
+                             where c.PESEL == TextBoxPESEL.Text
+                             select new
+                             {
+                                 c.Id_User,
+                             }
+                             ).FirstOrDefault();
+
+                if (query != null)
+                {
+                    x = query.Id_User;
+                }
+            }
+            return x;
+        }
+        private bool TestNumberAcc(string NumberTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.Account.Any(acc => acc.NumberAccount == NumberTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private bool TestPESELAcc(string PESELTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.Client.Any(acc => acc.PESEL == PESELTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private bool TestIdCard(string IdTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.Client.Any(acc => acc.NumberID == IdTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private bool TestNickName(string NickTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.Login.Any(acc => acc.UserName == NickTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private string CreateNumberAcc(int Id)
+        {
+        Start:
+            string Number;
+            System.Random random = new System.Random(); 
+            int num1 = random.Next(1000, 5000);
+            int num2 = random.Next(5000, 9000);
+
+            while (Id > 99)
+            {
+                Id = Id - 100;
+            }
+            if (Id < 10)
+            {
+                Number = "21" + Id + "0" + " " + num1 + " 0000 " + num2;
+            }
+            else
+            {
+                Number = "21" + Id + " " + num1 + " 0000 " + num2;
+            }
+            
+
+            if (TestNumberAcc(Number) == true)
+            {
+                goto Start;
+            }
+
+            return Number;
         }
     }
 }

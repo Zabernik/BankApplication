@@ -17,12 +17,14 @@ namespace BankApplication
         public string Password { get; set; }
 
         [ForeignKey("Clients")]
-        public Clients Id_User { get; set; }
+        public int Id_User { get; set; }
+        public Clients Clients { get; set; }
     }
     public class Account
     {
-        [ForeignKey ("Clients")]
-        public Clients Id_User { get; set;}
+        [ForeignKey("Clients")]
+        public int Id_User { get; set; }
+        public Clients Clients { get; set; }
         public decimal Balance { get; set;}
         [Key]
         public string NumberAccount { get; set;}
@@ -41,7 +43,8 @@ namespace BankApplication
     public class History
     {
         [ForeignKey("Clients")]
-        public Clients Id_User { get; set; }
+        public int Id_User { get; set; }
+        public Clients Clients { get; set;}
         public string NumberAccountSender { get; set; }
         public string NumberAccountRecipient { get; set; }
         public decimal Amount { get; set; }
