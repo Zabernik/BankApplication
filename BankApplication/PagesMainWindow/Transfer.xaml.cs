@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.EntityFrameworkCore;
 
-namespace BankApplication
+namespace BankApplication.PagesMainWindow
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Logika interakcji dla klasy Transfer.xaml
+    /// </summary>
+    public partial class Transfer : Page
     {
-        public MainWindow()
+        public Transfer()
         {
             InitializeComponent();
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void sidebar_SelectionChanged(object sander, SelectionChangedEventArgs e)
-        {
-            var selected = sidebar.SelectedItem as NavButton;
-            navframe.Navigate(selected.NavLink);
-
-
         }
     }
 }
