@@ -62,4 +62,14 @@ namespace BankApplication
         public int IdError { get; set; }
         public DateTime DataError { get; set; }
     }
+    public class Contact
+    {
+        [Key]
+        public string Phone_Number { get; set; }
+        [ForeignKey("Clients")]
+        public int Id_User { get; set; }
+        public Clients Clients { get; set; }
+        public string? Mail { get; set; }
+        public string Adress { get; set; }
+    }
 }

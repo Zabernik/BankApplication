@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BankApplication.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankApplication
@@ -59,5 +60,6 @@ namespace BankApplication
             Register register = new Register();
             register.Show();
         }
+        
     }
 }

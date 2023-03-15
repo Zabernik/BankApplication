@@ -9,6 +9,10 @@
       Title="Transfer">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="743*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </Page>

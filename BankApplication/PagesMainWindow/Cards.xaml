@@ -9,6 +9,10 @@
       Title="Cards">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="367*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </Page>

@@ -22,15 +22,10 @@ namespace BankApplication
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
         private void sidebar_SelectionChanged(object sander, SelectionChangedEventArgs e)
         {
             var selected = sidebar.SelectedItem as NavButton;
             navframe.Navigate(selected.NavLink);
-
-
         }
     }
 }

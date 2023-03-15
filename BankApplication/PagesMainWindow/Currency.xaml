@@ -9,6 +9,10 @@
       Title="Currency">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="87*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </Page>
