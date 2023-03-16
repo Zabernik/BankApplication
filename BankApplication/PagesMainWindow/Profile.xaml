@@ -29,7 +29,7 @@
         <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,262,0,0" VerticalAlignment="Top" Width="16" Foreground="#FFF7F1F1"/>
         <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="32" Margin="0,295,0,0" VerticalAlignment="Top" Width="16" Foreground="#FFF7F1F1"/>
         <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,327,0,0" VerticalAlignment="Top" Width="16" Foreground="#FFF7F1F1"/>
-        <TextBlock x:Name="TextBlockNameLastName" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+        <TextBlock x:Name="TextBlockName" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Text=""/>
         <TextBlock x:Name="TextBlockNrID" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="46,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
         <TextBlock x:Name="TextBlockPESEL" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
         <TextBlock x:Name="TextBlockPhone" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>

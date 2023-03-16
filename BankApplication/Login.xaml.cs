@@ -37,6 +37,9 @@ namespace BankApplication
                 if(userexist) 
                 {
                     LogIn();
+                    var x = new Client(false, "w", ClientType.Teenager, 1, "", 1, "", "");
+                    Client.IdUser = ReadId();
+                    x = x.LoadData(Client.IdUser);
                     Close();
                 }
                 else
@@ -60,6 +63,25 @@ namespace BankApplication
             Register register = new Register();
             register.Show();
         }
-        
+        private int ReadId()
+        {
+            int x = 0;
+            using (SQLite ctx = new SQLite())
+            {
+                var query = (from c in ctx.Login
+                             where c.UserName == TextBoxLog.Text
+                             select new
+                             {
+                                 c.Id_User,
+                             }
+                             ).FirstOrDefault();
+
+                if (query != null)
+                {
+                    x = query.Id_User;
+                }
+            }
+            return x;
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using BankApplication.Enums;
 
 namespace BankApplication
 {
@@ -32,6 +33,9 @@ namespace BankApplication
         public string NumberAccount { get; set; }
         public decimal Debet { get; set; }
         public bool Active { get; set; }
+        [ForeignKey("ClientTypes")]
+        public ClientType Type { get; set; }
+        public ClientTypes ClientTypes { get; set; }
     }
     public class Clients
     {
@@ -71,5 +75,10 @@ namespace BankApplication
         public Clients Clients { get; set; }
         public string? Mail { get; set; }
         public string Adress { get; set; }
+    }
+    public class ClientTypes
+    {
+        [Key]
+        public ClientType Type { get; set; }
     }
 }
