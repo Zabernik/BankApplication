@@ -28,10 +28,8 @@ namespace BankApplication.PagesMainWindow
         }
         public void LoadText()
         {
-            
-            var x = new Client(false, "w",ClientType.Teenager,1,"",1,"","");
+            Client x = new Client(true, "",ClientType.Teenager,Client.IdUser,"",1,"","");
             x = x.LoadData(Client.IdUser);
-            MessageBox.Show(Convert.ToString(Client.IdUser));
             TextBlockName.Text = x.FullName;
             TextBlockNrID.Text = x.NumberID;
             TextBlockPESEL.Text = x.PESEL;

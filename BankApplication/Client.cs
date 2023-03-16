@@ -50,7 +50,7 @@ namespace BankApplication
             decimal balance = GetBalance(ID);
             ClientType type = GetType(ID);
 
-            var x = new Client(active, name, type, ID, numberAcc, balance, PESEL, numberId);
+            Client x = new Client(active, name, type, ID, numberAcc, balance, PESEL, numberId);
 
             return x;
         }
