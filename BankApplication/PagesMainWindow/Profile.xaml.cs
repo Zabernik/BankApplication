@@ -28,11 +28,15 @@ namespace BankApplication.PagesMainWindow
         }
         public void LoadText()
         {
-            Client x = new Client(true, "",ClientType.Teenager,Client.IdUser,"",1,"","");
+            Client x = new Client();
             x = x.LoadData(Client.IdUser);
             TextBlockName.Text = x.FullName;
             TextBlockNrID.Text = x.NumberID;
             TextBlockPESEL.Text = x.PESEL;
+            TextBlockMail.Text = x.Mail;
+            TextBlockAdress.Text = x.Adress;
+            TextBlockMail.Text = x.Mail;
+            TextBlockPhone.Text = x.PhoneNumber;
         }
     }
 }

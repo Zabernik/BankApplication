@@ -16,18 +16,18 @@
                             Background="Transparent"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Path x:Name="icon" Height="18" Width="18" Stretch="Uniform" Fill="Gray" Data="{TemplateBinding Icon}"/>
+                        <Path x:Name="icon" Height="18" Width="18" Stretch="Uniform" Fill="#FFE0DEB3" Data="{TemplateBinding Icon}"/>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
-                            <Setter Property="Fill" TargetName="icon" Value="#2a84f1"/>
+                            <Setter Property="Background" TargetName="back" Value="#FFC5BE8E"/>
+                            <Setter Property="Fill" TargetName="icon" Value="#FFC39531"/>
                         </Trigger>
                         
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
-                            <Setter Property="Fill" TargetName="icon" Value="#2a84f1"/>
+                            <Setter Property="Background" TargetName="back" Value="#FFC5BE8E"/>
+                            <Setter Property="Fill" TargetName="icon" Value="#FFC39531"/>
                         </Trigger>
 
                     </ControlTemplate.Triggers>

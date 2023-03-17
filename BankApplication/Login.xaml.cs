@@ -37,7 +37,6 @@ namespace BankApplication
                 if(userexist) 
                 {
                     LogIn();
-                    ReadId();
                     Close();
                 }
                 else
@@ -53,6 +52,7 @@ namespace BankApplication
         }
         public void LogIn()
         {
+            ReadId();
             MainWindow main = new MainWindow();
             main.Show();
         }

@@ -19,8 +19,11 @@ namespace BankApplication
         public decimal Balance { get; set; }
         public string PESEL { get; set; }
         public string NumberID { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Mail { get; set; }
+        public string Adress { get; set; }
 
-        public Client(bool active, string name, ClientType clientType, int idUser, string nrAcc, decimal balance, string PESEL, string numberID) 
+        public Client(bool active, string name, ClientType clientType, int idUser, string nrAcc, decimal balance, string PESEL, string numberID, string mail, string phoneNumber, string adress) 
         { 
             Active = active;
             FullName = name;
@@ -30,6 +33,13 @@ namespace BankApplication
             Balance = balance;
             this.PESEL = PESEL;
             NumberID = numberID;
+            Mail = mail;
+            PhoneNumber = phoneNumber;
+            Adress = adress;
+        }
+        public Client()
+        {
+
         }
         public void GetInfo(int ID)
         {
@@ -50,9 +60,21 @@ namespace BankApplication
             decimal balance = GetBalance(ID);
             ClientType type = GetType(ID);
 
-            Client x = new Client(active, name, type, ID, numberAcc, balance, PESEL, numberId);
+            string mail = GetMail(ID);
+            string adress = GetAdress(ID);
+            string phoneNumber = GetPhone(ID);
 
+
+            Client x = new Client(active, name, type, ID, numberAcc, balance, PESEL, numberId, phoneNumber, mail, adress);
+            //Client y = new Client(phoneNumber, mail, adress);
             return x;
+            //switch (mode)
+            //{
+            //    case 1:
+            //        return x;
+            //    default:
+            //        return y;
+            //}
         }
 
         public string GetName(int ID)
@@ -115,6 +137,72 @@ namespace BankApplication
                     if (query != null)
                     {
                         x = query.NumberAccount;
+                    }
+                }
+                return x;
+            }
+        }
+        public string GetMail(int ID)
+        {
+            {
+                string x = default;
+                using (SQLite ctx = new SQLite())
+                {
+                    var query = (from c in ctx.Contact
+                                 where c.Id_User == ID
+                                 select new
+                                 {
+                                     c.Mail,
+                                 }
+                                 ).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        x = query.Mail;
+                    }
+                }
+                return x;
+            }
+        }
+        public string GetPhone(int ID)
+        {
+            {
+                string x = default;
+                using (SQLite ctx = new SQLite())
+                {
+                    var query = (from c in ctx.Contact
+                                 where c.Id_User == ID
+                                 select new
+                                 {
+                                     c.Phone_Number,
+                                 }
+                                 ).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        x = query.Phone_Number;
+                    }
+                }
+                return x;
+            }
+        }
+        public string GetAdress(int ID)
+        {
+            {
+                string x = default;
+                using (SQLite ctx = new SQLite())
+                {
+                    var query = (from c in ctx.Contact
+                                 where c.Id_User == ID
+                                 select new
+                                 {
+                                     c.Adress,
+                                 }
+                                 ).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        x = query.Adress ;
                     }
                 }
                 return x;

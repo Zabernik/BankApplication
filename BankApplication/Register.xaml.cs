@@ -144,43 +144,43 @@ namespace BankApplication
         {
             if (TextBoxName.Text.Length > 12)
             {
-                AddLog(2, DateTime.Now);
+                AddLog(2);
                 return 2;
             }
             if (TextBoxName.Text.Length < 3)
             {
-                AddLog(3, DateTime.Now);
+                AddLog(3);
                 return 3;
             }
             if (TextBoxLastName.Text.Length > 16)
             {
-                AddLog(4, DateTime.Now);
+                AddLog(4);
                 return 4;
             }
             if (TextBoxLastName.Text.Length < 2)
             {
-                AddLog(5, DateTime.Now);
+                AddLog(5);
 
                 return 5;
             }
             if (TextBoxPESEL.Text.Length != 11 || TestPESELAcc(TextBoxPESEL.Text) == true)
             {
-                AddLog(6, DateTime.Now);
+                AddLog(6);
                 return 6;
             }
             if (TextBoxNrID.Text.Length != 9 || !(Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")) || TestIdCard(TextBoxNrID.Text) == true)
             {
-                AddLog(7, DateTime.Now);
+                AddLog(7);
                 return 7;
             }
             if (TextBoxUser.Text.Length > 16 || !TextBoxUser.Text.All(Char.IsLetter) || TestNickName(TextBoxUser.Text) == true)
             {
-                AddLog(8, DateTime.Now);
+                AddLog(8);
                 return 8;
             }
             if (CheckStrength(TextBoxPass.Text) < PasswordStrenght.Medium)
             {
-                AddLog(9, DateTime.Now);
+                AddLog(9);
                 return 9;
             }
             return 1;
@@ -253,11 +253,11 @@ namespace BankApplication
             TextBoxPassStrenght.Text = Convert.ToString(CheckStrength(Input));
         }
 
-        private void AddLog(int Id, DateTime date) 
+        public void AddLog(int Id) 
         {
             using (SQLite conn = new SQLite())
             {
-                var newLog = new Logs {IdError = Id, DataError = date};
+                var newLog = new Logs {IdError = Id, DataError = DateTime.Now};
                 conn.Add<Logs>(newLog);
                 conn.SaveChanges();
             }

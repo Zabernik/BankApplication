@@ -1,0 +1,47 @@
+﻿<Page x:Class="BankApplication.PagesMainWindow.DataRegister"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BankApplication.PagesMainWindow"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DataRegister">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="304*"/>
+            <ColumnDefinition Width="353*"/>
+            <ColumnDefinition Width="143*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="To twoje pierwsze logowanie do aplikacji. Dziękuje za rejestrację. &#xD;&#xA;Proszę uzupełnić informację potrzebne do aktywacji twojego konta." HorizontalAlignment="Left" Height="67" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="TextBoxPIN" HorizontalAlignment="Left" Height="22" Margin="51,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" MaxLength="4"/>
+        <TextBox x:Name="TextBoxPhoneNumber" HorizontalAlignment="Left" Height="22" Margin="51,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <TextBox x:Name="TextBoxMail" HorizontalAlignment="Left" Height="22" Margin="51,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+        <Label Content="PIN" HorizontalAlignment="Left" Height="26" Margin="51,82,0,0" VerticalAlignment="Top" Width="210"/>
+        <Label Content="Numer Telefonu" HorizontalAlignment="Left" Height="26" Margin="51,130,0,0" VerticalAlignment="Top" Width="210"/>
+        <Label Content="Adres E-Mail" HorizontalAlignment="Left" Height="26" Margin="51,178,0,0" VerticalAlignment="Top" Width="210"/>
+        <TextBox HorizontalAlignment="Left" Height="43" Margin="10,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Height="43" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <Label Content="Adres Zamieszkania (Miasto + Kod Pocztowy" HorizontalAlignment="Left" Height="26" Margin="10,82,0,0" VerticalAlignment="Top" Width="248" Grid.Column="1"/>
+        <Label Content="Adres Zamieszkania (Ulica + nr. budynku + nr. mieszkania" HorizontalAlignment="Left" Height="26" Margin="10,151,0,0" VerticalAlignment="Top" Width="316" Grid.Column="1"/>
+        <TextBox x:Name="TextBoxNIP" Visibility="Hidden" HorizontalAlignment="Left" Height="42" Margin="10,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <ComboBox x:Name="ComboBox_Type" HorizontalAlignment="Left" Margin="51,305,0,0" VerticalAlignment="Top" Width="210" SelectionChanged="ComboBox_Type_SelectionChanged">
+            <ComboBoxItem Content="Standard"></ComboBoxItem>
+            <ComboBoxItem Content="Bussines"></ComboBoxItem>
+            <ComboBoxItem Content="Student"></ComboBoxItem>
+            <ComboBoxItem Content="Pensioner"></ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="LabelNIP" Visibility="Hidden" Content="NIP" HorizontalAlignment="Left" Height="26" Margin="10,220,0,0" VerticalAlignment="Top" Width="316" Grid.Column="1"/>
+        <TextBox x:Name="TextBoxNameUniversity" Visibility="Hidden"  HorizontalAlignment="Left" Height="42" Margin="10,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <Label x:Name="LabelNameUniversity" Visibility="Hidden" Content="Nazwa Uczelni" HorizontalAlignment="Left" Height="26" Margin="10,222,0,0" VerticalAlignment="Top" Width="316" Grid.Column="1"/>
+        <Label x:Name="LabelNameUniversity2" Visibility="Hidden" Content="Przewidywana Data Ukończenia Szkoły" HorizontalAlignment="Left" Height="26" Margin="10,290,0,0" VerticalAlignment="Top" Width="248" Grid.Column="1"/>
+        <TextBox x:Name="TextBoxZUS" HorizontalAlignment="Left" Visibility="Hidden" Height="43" Margin="10,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <Label x:Name="LabelZUS" Content="Numer Ubezpieczenia Socjalnego" Visibility="Hidden" HorizontalAlignment="Left" Height="26" Margin="10,220,0,0" VerticalAlignment="Top" Width="316" Grid.Column="1"/>
+        <Label x:Name="LabelZUS_Copy" Content="Rodzaj Konta" HorizontalAlignment="Left" Height="26" Margin="51,278,0,0" VerticalAlignment="Top" Width="210"/>
+        <DatePicker x:Name="TextBoxNameUniversity2" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,321,0,0" VerticalAlignment="Top" Grid.Column="1" Width="210" Height="28"/>
+        <DatePicker x:Name="DateBirth" HorizontalAlignment="Left" Margin="51,254,0,0" VerticalAlignment="Top" Width="210"/>
+        <Label x:Name="LabelZUS_Copy1" Content="Data Urodzenia" HorizontalAlignment="Left" Height="26" Margin="51,228,0,0" VerticalAlignment="Top" Width="210"/>
+        <Button x:Name="ButtonAccept" Content="Zaakceptuj" HorizontalAlignment="Left" Height="43" Margin="51,352,0,0" VerticalAlignment="Top" Width="210" Click="ButtonAccept_Click"/>
+    </Grid>
+</Page>
