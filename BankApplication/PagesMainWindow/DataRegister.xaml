@@ -21,8 +21,8 @@
         <Label Content="PIN" HorizontalAlignment="Left" Height="26" Margin="51,82,0,0" VerticalAlignment="Top" Width="210"/>
         <Label Content="Numer Telefonu" HorizontalAlignment="Left" Height="26" Margin="51,130,0,0" VerticalAlignment="Top" Width="210"/>
         <Label Content="Adres E-Mail" HorizontalAlignment="Left" Height="26" Margin="51,178,0,0" VerticalAlignment="Top" Width="210"/>
-        <TextBox HorizontalAlignment="Left" Height="43" Margin="10,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="43" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <TextBox x:Name="TextBoxAdress1" HorizontalAlignment="Left" Height="43" Margin="10,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <TextBox x:Name="TextBoxAdress2" HorizontalAlignment="Left" Height="43" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
         <Label Content="Adres Zamieszkania (Miasto + Kod Pocztowy" HorizontalAlignment="Left" Height="26" Margin="10,82,0,0" VerticalAlignment="Top" Width="248" Grid.Column="1"/>
         <Label Content="Adres Zamieszkania (Ulica + nr. budynku + nr. mieszkania" HorizontalAlignment="Left" Height="26" Margin="10,151,0,0" VerticalAlignment="Top" Width="316" Grid.Column="1"/>
         <TextBox x:Name="TextBoxNIP" Visibility="Hidden" HorizontalAlignment="Left" Height="42" Margin="10,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
@@ -39,7 +39,7 @@
         <TextBox x:Name="TextBoxZUS" HorizontalAlignment="Left" Visibility="Hidden" Height="43" Margin="10,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
         <Label x:Name="LabelZUS" Content="Numer Ubezpieczenia Socjalnego" Visibility="Hidden" HorizontalAlignment="Left" Height="26" Margin="10,220,0,0" VerticalAlignment="Top" Width="316" Grid.Column="1"/>
         <Label x:Name="LabelZUS_Copy" Content="Rodzaj Konta" HorizontalAlignment="Left" Height="26" Margin="51,278,0,0" VerticalAlignment="Top" Width="210"/>
-        <DatePicker x:Name="TextBoxNameUniversity2" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,321,0,0" VerticalAlignment="Top" Grid.Column="1" Width="210" Height="28"/>
+        <DatePicker x:Name="DateUniversity" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,321,0,0" VerticalAlignment="Top" Grid.Column="1" Width="210" Height="28"/>
         <DatePicker x:Name="DateBirth" HorizontalAlignment="Left" Margin="51,254,0,0" VerticalAlignment="Top" Width="210"/>
         <Label x:Name="LabelZUS_Copy1" Content="Data Urodzenia" HorizontalAlignment="Left" Height="26" Margin="51,228,0,0" VerticalAlignment="Top" Width="210"/>
         <Button x:Name="ButtonAccept" Content="Zaakceptuj" HorizontalAlignment="Left" Height="43" Margin="51,352,0,0" VerticalAlignment="Top" Width="210" Click="ButtonAccept_Click"/>

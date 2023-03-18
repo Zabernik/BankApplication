@@ -22,5 +22,9 @@ namespace BankApplication
         public DbSet<Logs> Logs { get; set;}
         public DbSet<Contact> Contact { get; set;}
         public DbSet<ClientTypes> ClientTypes { get; set; }
+        public DbSet<PensionerAccount> pensionerAccounts { get; set;}
+        public DbSet<BussinesAccount> bussinesAccounts { get; set; }
+        public DbSet<StudentAccount> studentAccounts { get; set; }
+        public DbSet<TeenagerAccount> teenagerAccounts { get; set; }
     }
 }

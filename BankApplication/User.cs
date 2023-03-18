@@ -45,6 +45,7 @@ namespace BankApplication
         public string LastName { get; set; }
         public string PESEL { get; set; }
         public string NumberID { get; set; }
+        public string? DateBirth { get; set; }
     }
     public class History
     {
@@ -80,5 +81,53 @@ namespace BankApplication
     {
         [Key]
         public ClientType Type { get; set; }
+    }
+    public class BussinesAccount 
+    {
+        [ForeignKey("Clients")]
+        public int Id_User { get; set; }
+        public Clients Clients { get; set; }
+        [ForeignKey("ClientTypes")]
+        public ClientType Type { get; set; }
+        public ClientTypes ClientTypes { get; set; }
+        [Key]
+        public string NIP { get; set; }
+    }
+    public class StudentAccount
+    {
+        [ForeignKey("Clients")]
+        public int Id_User { get; set; }
+        public Clients Clients { get; set; }
+        [ForeignKey("ClientTypes")]
+        public ClientType Type { get; set; }
+        public ClientTypes ClientTypes { get; set; }
+        public string Name_of_University { get; set; }
+        public DateTime End_of_Study { get; set; }
+        [Key]
+        public int ID_Student { get; set; }
+
+    }
+    public class PensionerAccount
+    {
+        [ForeignKey("Clients")]
+        public int Id_User { get; set; }
+        public Clients Clients { get; set; }
+        [ForeignKey("ClientTypes")]
+        public ClientType Type { get; set; }
+        public ClientTypes ClientTypes { get; set; }
+        [Key]
+        public string Number_of_ZUS_ID { get; set; }
+    }
+    public class TeenagerAccount
+    {
+        [ForeignKey("Clients")]
+        public int Id_User { get; set; }
+        public Clients Clients { get; set; }
+        [ForeignKey("ClientTypes")]
+        public ClientType Type { get; set; }
+        public ClientTypes ClientTypes { get; set; }
+        public string Name_of_Guardian { get; set; }
+        [Key]
+        public string ID_Teenager { get; set; }
     }
 }

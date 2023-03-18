@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
+using System.Text.RegularExpressions;
+using System.Windows.Controls.Primitives;
 
 namespace BankApplication.PagesMainWindow
 {
@@ -39,7 +41,7 @@ namespace BankApplication.PagesMainWindow
 
                 TextBoxNameUniversity.Visibility = Visibility.Hidden;
                 LabelNameUniversity.Visibility = Visibility.Hidden;
-                TextBoxNameUniversity2.Visibility = Visibility.Hidden;
+                DateUniversity.Visibility = Visibility.Hidden;
                 LabelNameUniversity2.Visibility = Visibility.Hidden;
 
                 TextBoxZUS.Visibility = Visibility.Hidden;
@@ -52,7 +54,7 @@ namespace BankApplication.PagesMainWindow
 
                 TextBoxNameUniversity.Visibility = Visibility.Hidden;
                 LabelNameUniversity.Visibility = Visibility.Hidden;
-                TextBoxNameUniversity2.Visibility = Visibility.Hidden;
+                DateUniversity.Visibility = Visibility.Hidden;
                 LabelNameUniversity2.Visibility = Visibility.Hidden;
 
                 TextBoxZUS.Visibility = Visibility.Hidden;
@@ -65,7 +67,7 @@ namespace BankApplication.PagesMainWindow
 
                 TextBoxNameUniversity.Visibility = Visibility.Visible;
                 LabelNameUniversity.Visibility = Visibility.Visible;
-                TextBoxNameUniversity2.Visibility = Visibility.Visible;
+                DateUniversity.Visibility = Visibility.Visible;
                 LabelNameUniversity2.Visibility = Visibility.Visible;
 
                 TextBoxZUS.Visibility = Visibility.Hidden;
@@ -78,7 +80,7 @@ namespace BankApplication.PagesMainWindow
 
                 TextBoxNameUniversity.Visibility = Visibility.Hidden;
                 LabelNameUniversity.Visibility = Visibility.Hidden;
-                TextBoxNameUniversity2.Visibility = Visibility.Hidden;
+                DateUniversity.Visibility = Visibility.Hidden;
                 LabelNameUniversity2.Visibility = Visibility.Hidden;
 
                 TextBoxZUS.Visibility = Visibility.Visible;
@@ -94,48 +96,180 @@ namespace BankApplication.PagesMainWindow
         }
         private void Succes()
         {
-            this.NavigationService.Navigate(new Uri("PagesMainWindow/MainPage.xaml", UriKind.Relative));
+            MessageBoxResult dialogResult = MessageBox.Show("Czy chcesz zaakceptować wprowadzone dane i je zapisać? ","",MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                UpdateData();
+                this.NavigationService.Navigate(new Uri("PagesMainWindow/MainPage.xaml", UriKind.Relative));
+            }
+            else if (dialogResult == MessageBoxResult.No)
+            {
+
+            }
         }
         private bool CheckReqirements()
         {
-            var trimmedEmail = TextBoxMail.Text.Trim();
             Register reg = new Register();
-            if(TextBoxPIN.Text.Length != 4 || TextBoxPIN.Text.All(Char.IsLetter)) 
+            Regex PINValidation = new Regex("^\\d{4}$");
+            if (!PINValidation.Match(TextBoxPIN.Text).Success) 
             {
+                MessageBox.Show(Convert.ToString(ComboBox_Type.SelectedIndex));
                 reg.AddLog(10);
                 SystemSounds.Beep.Play();
                 MessageBox.Show("PIN musi mieć 4 cyfry", "Error #10", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (TextBoxPhoneNumber.Text.Length != 9)
+            Regex PhoneValidation = new Regex("^[+]{0,1}\\d{0,3}[ -]{0,1}\\d{1,9}[ -]{0,1}\\d{1,3}[ -]{0,1}\\d{1,3}$");
+            if (!PhoneValidation.Match(TextBoxPhoneNumber.Text).Success)
             {
                 reg.AddLog(11);
                 SystemSounds.Beep.Play();
                 MessageBox.Show("Numer telefonu powinien mieć 9 cyfr", "Error #11", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (TextBoxPhoneNumber.Text.Length != 9)
+            var trimmedEmail = TextBoxMail.Text.Trim();
+            if (trimmedEmail.EndsWith(".") || TextBoxMail.Text is null)
             {
-                reg.AddLog(11);
+                reg.AddLog(12);
                 SystemSounds.Beep.Play();
-                MessageBox.Show("Numer telefonu powinien mieć 9 cyfr", "Error #11", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (trimmedEmail.EndsWith("."))
-            {
-                return false; // suggested by @TK-421
+                MessageBox.Show("Wprowadzono nie poprawny mail", "Error #12", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false; 
             }
             try
             {
                 var addr = new System.Net.Mail.MailAddress(TextBoxMail.Text);
                 //return addr.Address == trimmedEmail; <---source mail adress
-                MessageBox.Show(Convert.ToString(addr.Address == trimmedEmail));
+                //MessageBox.Show(Convert.ToString(addr.Address == trimmedEmail));
             }
             catch
             {
+                reg.AddLog(12);
+                SystemSounds.Beep.Play();
+                MessageBox.Show("Wprowadzono nie poprawny mail", "Error #12", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            return false;
+            if (DateBirth.SelectedDate == DateTime.Now || DateBirth.SelectedDate > DateTime.Now.AddYears(-18) || DateBirth.SelectedDate is null)
+            {
+                reg.AddLog(13);
+                SystemSounds.Beep.Play();
+
+                MessageBox.Show("Żeby zarejestrować się w naszym Banku z innym kontem niż dla młodych trzeba mieć ukończone 18 lat.", "Error #13", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            Regex postCodeValidation = new Regex(@"^[a-zA-Z ńłźżóćŃŁŹŻÓĆ-]+\s\d{2}[-]\d{3}$");
+            if (!postCodeValidation.Match(TextBoxAdress1.Text).Success)
+            {
+                reg.AddLog(14);
+                SystemSounds.Beep.Play();
+                MessageBox.Show("Adres powinien zawierać 'Miasto' oraz Kod Pocztowy 'XX-XXX' ", "Error #14", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            Regex adressValidation = new Regex("^[a-zA-Zł ńźżóćŁŃŹŻÓĆ-]+\\s\\d{1,4}[A-Z]{0,2}[ -]{0,1}\\d{0,5}$");
+            if (!adressValidation.Match(TextBoxAdress2.Text).Success)
+            {
+                reg.AddLog(15);
+                SystemSounds.Beep.Play();
+                MessageBox.Show("Adres powinien zawierać 'Ulice' 'Nr.Domu' i ewentualnie 'Nr.Mieszkania' np. 'Utrata 2 33' lub 'Łanowicze Małe 9' ", "Error #15", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (ComboBox_Type.SelectedValue is null)
+            {
+                reg.AddLog(16);
+                SystemSounds.Beep.Play();
+                MessageBox.Show("Musisz wybrać typ konta który chciałbyś użytkować", "Error #16", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Bussines")
+            {
+                Regex NIPValidation = new Regex("^\\d{10}$");
+                if (!NIPValidation.Match(TextBoxNIP.Text).Success)
+                {
+                    reg.AddLog(16);
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("NIP powinien zawierać 10 cyfr", "Error #16", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Student")
+            {
+                Regex UniversityValidation = new Regex("^[a-zA-Z ńłźżóćŁŹŃŻÓĆ]{1,}$");
+                if (!UniversityValidation.Match(TextBoxNameUniversity.Text).Success)
+                {
+                    reg.AddLog(17);
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Nie poprawna nazwa uczelni", "Error #17", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (DateUniversity.SelectedDate < DateTime.Now.AddYears(-1))
+                {
+                    reg.AddLog(18);
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Żeby skorzystać z oferty Konta Studenckiego, musimy aktywować konto min. rok przed teoretycznym ukończeniem studiów", "Error #18", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Pensioner")
+            {
+                Regex ZUSValidation = new Regex("^\\d{10}$");
+                if (!ZUSValidation.Match(TextBoxZUS.Text).Success)
+                {
+                    reg.AddLog(19);
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Numer ubezpieczenia powinien zawierać 10 cyfr", "Error #19", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void UpdateData()
+        {
+            int ID = Client.IdUser;
+            using (SQLite conn = new SQLite())
+            {
+                var result = conn.Login.SingleOrDefault(b => b.Id_User == ID);
+                if (result != null)
+                {
+                    result.PIN = TextBoxPIN.Text;
+                    conn.SaveChanges();
+                }
+                var result2 = conn.Client.SingleOrDefault(b => b.Id_User == ID);
+                if (result2 != null)
+                {
+                    result2.DateBirth = DateBirth.SelectedDate.ToString();
+                    conn.SaveChanges();
+                }
+                var result3 = conn.Account.SingleOrDefault(b => b.Id_User == ID);
+                if (result3 != null)
+                {
+                    result3.Type = (Enums.ClientType)ComboBox_Type.SelectedIndex;
+                    conn.SaveChanges();
+                    result3.Active = true;
+                }
+
+                var newContact = new Contact { Phone_Number = TextBoxPhoneNumber.Text, Mail = TextBoxMail.Text, Adress = TextBoxAdress1.Text + " " + TextBoxAdress2.Text, Id_User = ID };
+                conn.Add<Contact>(newContact);
+                conn.SaveChanges();
+
+                if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Bussines")
+                {
+                    var newBussines = new BussinesAccount {NIP = TextBoxNIP.Text, Type = Enums.ClientType.Bussines , Id_User = ID };
+                    conn.Add<BussinesAccount>(newBussines);
+                    conn.SaveChanges();
+                }
+                if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Pensioner")
+                {
+                    var newPensioner = new PensionerAccount {Number_of_ZUS_ID = TextBoxZUS.Text , Type = Enums.ClientType.Pensioner, Id_User = ID };
+                    conn.Add<PensionerAccount>(newPensioner);
+                    conn.SaveChanges();
+                }
+                if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Student")
+                {
+                    var newStudent = new StudentAccount { Name_of_University = TextBoxNameUniversity.Text, End_of_Study = (DateTime)DateUniversity.SelectedDate, Type = Enums.ClientType.Student, Id_User = ID };
+                    conn.Add<StudentAccount>(newStudent);
+                    conn.SaveChanges();
+                }
+            }
         }
     }
 }
