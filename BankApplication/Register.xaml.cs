@@ -168,7 +168,7 @@ namespace BankApplication
                 AddLog(6);
                 return 6;
             }
-            if (TextBoxNrID.Text.Length != 9 || !(Regex.IsMatch(TextBoxNrID.Text.Substring(0, 3), "^[a-zA-Z ]*$")) || TestIdCard(TextBoxNrID.Text) == true)
+            if (TextBoxNrID.Text.Length != 9 || !(Regex.IsMatch(TextBoxNrID.Text, "^[a-zA-Z]{3}\\s{0,1}[0-9]{6}$")) || TestIdCard(TextBoxNrID.Text) == true)
             {
                 AddLog(7);
                 return 7;

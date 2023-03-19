@@ -120,7 +120,7 @@ namespace BankApplication.PagesMainWindow
                 return false;
             }
             Regex PhoneValidation = new Regex("^[+]{0,1}\\d{0,3}[ -]{0,1}\\d{1,9}[ -]{0,1}\\d{1,3}[ -]{0,1}\\d{1,3}$");
-            if (!PhoneValidation.Match(TextBoxPhoneNumber.Text).Success)
+            if (!PhoneValidation.Match(TextBoxPhoneNumber.Text).Success || TestNumberAcc(TextBoxPhoneNumber.Text) == true)
             {
                 reg.AddLog(11);
                 SystemSounds.Beep.Play();
@@ -128,7 +128,7 @@ namespace BankApplication.PagesMainWindow
                 return false;
             }
             var trimmedEmail = TextBoxMail.Text.Trim();
-            if (trimmedEmail.EndsWith(".") || TextBoxMail.Text is null)
+            if (trimmedEmail.EndsWith(".") || TextBoxMail.Text is null || TestMailAcc(TextBoxMail.Text))
             {
                 reg.AddLog(12);
                 SystemSounds.Beep.Play();
@@ -180,10 +180,10 @@ namespace BankApplication.PagesMainWindow
                 MessageBox.Show("Musisz wybrać typ konta który chciałbyś użytkować", "Error #16", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Bussines")
+            if (ComboBox_Type.SelectedIndex == 1)
             {
                 Regex NIPValidation = new Regex("^\\d{10}$");
-                if (!NIPValidation.Match(TextBoxNIP.Text).Success)
+                if (!NIPValidation.Match(TextBoxNIP.Text).Success || TestNIPAcc(TextBoxNIP.Text))
                 {
                     reg.AddLog(16);
                     SystemSounds.Beep.Play();
@@ -191,7 +191,7 @@ namespace BankApplication.PagesMainWindow
                     return false;
                 }
             }
-            if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Student")
+            if (ComboBox_Type.SelectedIndex == 2)
             {
                 Regex UniversityValidation = new Regex("^[a-zA-Z ńłźżóćŁŹŃŻÓĆ]{1,}$");
                 if (!UniversityValidation.Match(TextBoxNameUniversity.Text).Success)
@@ -201,7 +201,7 @@ namespace BankApplication.PagesMainWindow
                     MessageBox.Show("Nie poprawna nazwa uczelni", "Error #17", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                if (DateUniversity.SelectedDate < DateTime.Now.AddYears(-1))
+                if (DateUniversity.SelectedDate < DateTime.Now.AddYears(-1) || DateUniversity.SelectedDate is null)
                 {
                     reg.AddLog(18);
                     SystemSounds.Beep.Play();
@@ -209,10 +209,10 @@ namespace BankApplication.PagesMainWindow
                     return false;
                 }
             }
-            if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Pensioner")
+            if (ComboBox_Type.SelectedIndex == 3)
             {
                 Regex ZUSValidation = new Regex("^\\d{10}$");
-                if (!ZUSValidation.Match(TextBoxZUS.Text).Success)
+                if (!ZUSValidation.Match(TextBoxZUS.Text).Success || TestZUSAcc(TextBoxZUS.Text))
                 {
                     reg.AddLog(19);
                     SystemSounds.Beep.Play();
@@ -227,6 +227,7 @@ namespace BankApplication.PagesMainWindow
             int ID = Client.IdUser;
             using (SQLite conn = new SQLite())
             {
+                UploadData();
                 var result = conn.Login.SingleOrDefault(b => b.Id_User == ID);
                 if (result != null)
                 {
@@ -247,27 +248,99 @@ namespace BankApplication.PagesMainWindow
                     result3.Active = true;
                 }
 
+                MessageBox.Show("Przed wpisanie" + Convert.ToString(ComboBox_Type.SelectedValue));
+
                 var newContact = new Contact { Phone_Number = TextBoxPhoneNumber.Text, Mail = TextBoxMail.Text, Adress = TextBoxAdress1.Text + " " + TextBoxAdress2.Text, Id_User = ID };
                 conn.Add<Contact>(newContact);
                 conn.SaveChanges();
-
-                if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Bussines")
+            }
+        }
+        private void UploadData()
+        {
+            int ID = Client.IdUser;
+            using (SQLite conn = new SQLite())
+            {
+                MessageBox.Show("Funkcja otwarta przed wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
+                if (ComboBox_Type.SelectedIndex == 1)
                 {
-                    var newBussines = new BussinesAccount {NIP = TextBoxNIP.Text, Type = Enums.ClientType.Bussines , Id_User = ID };
+                    MessageBox.Show("Po wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
+                    var newBussines = new BussinesAccount { NIP = TextBoxNIP.Text, Type = Enums.ClientType.Bussines, Id_User = ID };
                     conn.Add<BussinesAccount>(newBussines);
                     conn.SaveChanges();
                 }
-                if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Pensioner")
+                if (ComboBox_Type.SelectedIndex == 3)
                 {
-                    var newPensioner = new PensionerAccount {Number_of_ZUS_ID = TextBoxZUS.Text , Type = Enums.ClientType.Pensioner, Id_User = ID };
+                    MessageBox.Show("Po wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
+                    var newPensioner = new PensionerAccount { Number_of_ZUS_ID = TextBoxZUS.Text, Type = Enums.ClientType.Pensioner, Id_User = ID };
                     conn.Add<PensionerAccount>(newPensioner);
                     conn.SaveChanges();
                 }
-                if (ComboBox_Type.SelectedValue == "System.Windows.Controls.ComboBoxItem: Student")
+                if (ComboBox_Type.SelectedIndex == 2)
                 {
+                    MessageBox.Show("Po wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
                     var newStudent = new StudentAccount { Name_of_University = TextBoxNameUniversity.Text, End_of_Study = (DateTime)DateUniversity.SelectedDate, Type = Enums.ClientType.Student, Id_User = ID };
                     conn.Add<StudentAccount>(newStudent);
                     conn.SaveChanges();
+                }
+            }
+        }
+        private bool TestNumberAcc(string NumberTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.Contact.Any(acc => acc.Phone_Number == NumberTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private bool TestMailAcc(string MailTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.Contact.Any(acc => acc.Mail == MailTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private bool TestNIPAcc(string NIPTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.bussinesAccounts.Any(acc => acc.NIP == NIPTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private bool TestZUSAcc(string ZUSTest)
+        {
+            using (SQLite conn = new SQLite())
+            {
+                bool NumberExist = conn.pensionerAccounts.Any(acc => acc.Number_of_ZUS_ID == ZUSTest);
+                if (NumberExist)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
         }
