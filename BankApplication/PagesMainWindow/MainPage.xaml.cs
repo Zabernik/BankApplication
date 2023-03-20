@@ -23,6 +23,20 @@ namespace BankApplication.PagesMainWindow
         public MainPage()
         {
             InitializeComponent();
+            LoadText();
+        }
+        public void LoadText()
+        {
+            Client x = new Client();
+            x = x.LoadData(Client.IdUser);
+            LabelNumberAcc.Content = x.NumberAcc;
+            TextBoxBalance.Text = x.Balance.ToString() +  " PLN";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SingleTransfer singleTransfer = new SingleTransfer();
+            this.Content = singleTransfer;
         }
     }
 }

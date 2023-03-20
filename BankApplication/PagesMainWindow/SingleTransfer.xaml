@@ -1,0 +1,28 @@
+﻿<Page x:Class="BankApplication.PagesMainWindow.SingleTransfer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BankApplication.PagesMainWindow"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SingleTransfer">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="357*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Odbiorca" HorizontalAlignment="Left" Height="30" Margin="99,63,0,0" VerticalAlignment="Top" Width="208" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Numer konta odbiorcy" HorizontalAlignment="Left" Height="29" Margin="99,128,0,0" VerticalAlignment="Top" Width="208" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Tytuł" HorizontalAlignment="Left" Height="30" Margin="99,192,0,0" VerticalAlignment="Top" Width="208" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Kwota" HorizontalAlignment="Left" Height="29" Margin="99,257,0,0" VerticalAlignment="Top" Width="208" Grid.Column="1" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="TextBoxRecipient" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="99,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="TextBoxNumberAcc" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="99,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="TextBoxTitle" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="99,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontWeight="Bold"/>
+        <TextBox x:Name="TextBoxAmount" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="99,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontWeight="Bold"/>
+        <Label Grid.Column="1" Content="Z konta:" HorizontalAlignment="Left" Height="29" Margin="480,63,0,0" VerticalAlignment="Top" Width="171" FontSize="14"/>
+        <TextBox x:Name="TextBoxAccount" Grid.Column="1" HorizontalAlignment="Left" Height="50" Margin="480,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171" Background="{x:Null}" BorderBrush="{x:Null}"/>
+
+    </Grid>
+</Page>

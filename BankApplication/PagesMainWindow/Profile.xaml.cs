@@ -38,5 +38,10 @@ namespace BankApplication.PagesMainWindow
             TextBlockMail.Text = x.Mail;
             TextBlockPhone.Text = x.PhoneNumber;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

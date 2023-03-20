@@ -16,26 +16,25 @@
             <ColumnDefinition Width="430*"/>
             <ColumnDefinition Width="43*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="1" Content="Imie i Nazwisko" HorizontalAlignment="Center" Height="33" Margin="0,97,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Grid.Column="1" Content="Numer Dokumentu " HorizontalAlignment="Center" Height="32" Margin="0,130,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Grid.Column="1" Content="PESEL" HorizontalAlignment="Center" Height="33" Margin="0,162,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Grid.Column="1" Content="Telefon komórkowy" HorizontalAlignment="Center" Height="33" Margin="0,262,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Grid.Column="1" Content="Adres e-mail" HorizontalAlignment="Center" Height="32" Margin="0,295,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Grid.Column="1" Content="Adres zamieszkania" HorizontalAlignment="Center" Height="33" Margin="0,327,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Grid.Column="1" Content="DANE OSOBOWE" HorizontalAlignment="Center" Height="33" Margin="0,59,0,0" VerticalAlignment="Top" Width="150" FontWeight="Bold" FontSize="14"/>
-        <Label Grid.Column="1" Content="DANE KONTAKTOWE" HorizontalAlignment="Center" Height="32" VerticalAlignment="Top" Width="150" FontWeight="Bold" FontSize="14" Margin="0,225,0,0"/>
-        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,97,0,0" VerticalAlignment="Top" Width="16"/>
-        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="32" Margin="0,130,0,0" VerticalAlignment="Top" Width="16"/>
-        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,162,0,0" VerticalAlignment="Top" Width="16"/>
-        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,262,0,0" VerticalAlignment="Top" Width="16"/>
-        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="32" Margin="0,295,0,0" VerticalAlignment="Top" Width="16"/>
-        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,327,0,0" VerticalAlignment="Top" Width="16"/>
-        <TextBlock x:Name="TextBlockName" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Text=""/>
-        <TextBlock x:Name="TextBlockNrID" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="46,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-        <TextBlock x:Name="TextBlockPESEL" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-        <TextBlock x:Name="TextBlockPhone" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-        <TextBlock x:Name="TextBlockMail" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="46,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-        <TextBlock x:Name="TextBlockAdress" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-        <Button Grid.Column="3" Content="Zmień Dane" HorizontalAlignment="Left" Height="50" Margin="240,10,0,0" VerticalAlignment="Top" Width="143" Background="#FFC5BE8E" BorderBrush="#FF716722"/>
+        <Label Grid.Column="1" Content="Imie i Nazwisko" HorizontalAlignment="Center" Height="33" Margin="0,97,0,0" VerticalAlignment="Top" Width="150" Foreground="#FFC5BE8E" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="1" Content="Numer Dokumentu " HorizontalAlignment="Center" Height="32" Margin="0,130,0,0" VerticalAlignment="Top" Width="150" Foreground="#FFC5BE8E" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="1" Content="PESEL" HorizontalAlignment="Center" Height="33" Margin="0,162,0,0" VerticalAlignment="Top" Width="150" Foreground="#FFC5BE8E" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="1" Content="Telefon komórkowy" HorizontalAlignment="Center" Height="33" Margin="0,292,0,0" VerticalAlignment="Top" Width="150" Foreground="#FFC5BE8E" FontSize="15" FontWeight="Bold"/>
+        <Label Content="Adres e-mail" HorizontalAlignment="Center" Height="32" Margin="0,260,0,0" VerticalAlignment="Top" Width="150" Grid.Column="1" Foreground="#FFC5BE8E" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="1" Content="Adres zamieszkania" HorizontalAlignment="Center" Height="33" Margin="0,327,0,0" VerticalAlignment="Top" Width="150" Foreground="#FFC5BE8E" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="1" Content="DANE OSOBOWE" HorizontalAlignment="Center" Height="33" Margin="0,59,0,0" VerticalAlignment="Top" Width="218" FontWeight="Bold" FontSize="20" Foreground="#FFC39531"/>
+        <Label Grid.Column="1" Content="DANE KONTAKTOWE" HorizontalAlignment="Center" Height="32" VerticalAlignment="Top" Width="218" FontWeight="Bold" FontSize="20" Margin="0,225,0,0" Foreground="#FFC39531"/>
+        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,97,0,0" VerticalAlignment="Top" Width="16" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="32" Margin="0,130,0,0" VerticalAlignment="Top" Width="16" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,162,0,0" VerticalAlignment="Top" Width="16" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,262,0,0" VerticalAlignment="Top" Width="16" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="32" Margin="0,295,0,0" VerticalAlignment="Top" Width="16" FontSize="15" FontWeight="Bold"/>
+        <Label Grid.Column="2" Content="-" HorizontalAlignment="Center" Height="33" Margin="0,327,0,0" VerticalAlignment="Top" Width="16" FontSize="15" FontWeight="Bold"/>
+        <TextBlock x:Name="TextBlockName" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Text="" Foreground="#FF393A3E" FontSize="15" FontWeight="Bold"/>
+        <TextBlock x:Name="TextBlockNrID" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="46,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Foreground="#FF393A3E" FontSize="15" FontWeight="Bold"/>
+        <TextBlock x:Name="TextBlockPESEL" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Foreground="#FF393A3E" FontSize="15" FontWeight="Bold"/>
+        <TextBlock x:Name="TextBlockPhone" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="46,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Foreground="#FF393A3E" FontSize="15" FontWeight="Bold"/>
+        <TextBlock x:Name="TextBlockMail" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="46,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Foreground="#FF393A3E" FontSize="15" FontWeight="Bold"/>
+        <TextBlock x:Name="TextBlockAdress" Grid.Column="3" HorizontalAlignment="Left" Height="41" Margin="46,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Foreground="#FF393A3E" FontSize="15" FontWeight="Bold"/>
     </Grid>
 </Page>
