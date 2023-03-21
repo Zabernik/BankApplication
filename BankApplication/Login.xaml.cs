@@ -79,6 +79,6 @@ namespace BankApplication
                 }
             }
             return Client.IdUser;
-        }
+        }    
     }
 }

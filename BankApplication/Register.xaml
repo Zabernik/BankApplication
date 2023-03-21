@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankApplication"
         mc:Ignorable="d"
-        Title="Register" Height="467" Width="439">
+        Title="" Height="467" Width="439">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

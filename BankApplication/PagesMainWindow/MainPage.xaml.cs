@@ -24,19 +24,98 @@ namespace BankApplication.PagesMainWindow
         {
             InitializeComponent();
             LoadText();
+            HistoryWidgetLoad();
         }
         public void LoadText()
         {
             Client x = new Client();
             x = x.LoadData(Client.IdUser);
             LabelNumberAcc.Content = x.NumberAcc;
-            TextBoxBalance.Text = x.Balance.ToString() +  " PLN";
+            TextBoxBalance.Text = x.Balance.ToString() + " PLN";
+        }
+        public void HistoryWidgetLoad()
+        {
+            var x = GetHistory(Client.IdUser);
+            TextBoxHistory1.Text = x.Item1;
+            TextBoxHistory2.Text = x.Item2;
+            TextBoxHistory3.Text = x.Item3;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SingleTransfer singleTransfer = new SingleTransfer();
-            this.Content = singleTransfer;
+            singleTransfer.Show();
+        }
+        public (string, string, string, int) GetHistory(int ID)
+        {
+            {
+                string x = default;
+                string y = default;
+                string z = default;
+                int i = 0;
+
+                using (SQLite ctx = new SQLite())
+                {
+                    var query = (from c in ctx.History
+                                 where c.Id_User == ID
+                                 select new
+                                 {
+                                     c.Amount,
+                                     c.Title,
+                                     c.NumberAccountRecipient,
+                                     c.Id_Transfer
+                                 }
+                                 ).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        x = query.Title + "  " + query.Amount + " PLN  " + query.NumberAccountRecipient;
+                        i = query.Id_Transfer;
+                    }
+                }
+                using (SQLite ctx = new SQLite())
+                {
+                    var query = (from c in ctx.History
+                                 where c.Id_User == ID && c.Id_Transfer > i
+                                       
+                                 select new
+                                 {
+                                     c.Amount,
+                                     c.Title,
+                                     c.NumberAccountRecipient,
+                                     c.Id_Transfer
+                                 }
+                                 ).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        y = query.Title + "  " + query.Amount + " PLN  " + query.NumberAccountRecipient;
+                        i = query.Id_Transfer;
+                    }
+                }
+                using (SQLite ctx = new SQLite())
+                {
+                    var query = (from c in ctx.History
+                                 where c.Id_User == ID && c.Id_Transfer > i
+
+                                 select new
+                                 {
+                                     c.Amount,
+                                     c.Title,
+                                     c.NumberAccountRecipient,
+                                     c.Id_Transfer
+                                 }
+                                 ).FirstOrDefault();
+
+                    if (query != null)
+                    {
+                        z = query.Title + "  " + query.Amount + " PLN  " + query.NumberAccountRecipient;
+                        i = query.Id_Transfer;
+                    }
+                }
+                return (x, y, z, i);
+            }
+
         }
     }
 }

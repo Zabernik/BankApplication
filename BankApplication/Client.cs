@@ -66,15 +66,7 @@ namespace BankApplication
 
 
             Client x = new Client(active, name, type, ID, numberAcc, balance, PESEL, numberId, phoneNumber, mail, adress);
-            //Client y = new Client(phoneNumber, mail, adress);
             return x;
-            //switch (mode)
-            //{
-            //    case 1:
-            //        return x;
-            //    default:
-            //        return y;
-            //}
         }
 
         public string GetName(int ID)

@@ -57,7 +57,7 @@ namespace BankApplication
         public decimal Amount { get; set; }
         public string Title { get; set; }
         [Key]
-        public string Id_Transfer { get; set; }
+        public int Id_Transfer { get; set; }
         public DateTime DateTransfer { get; set; }
     }
     public class Logs
