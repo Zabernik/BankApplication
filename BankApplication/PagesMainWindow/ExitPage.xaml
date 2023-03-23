@@ -9,8 +9,8 @@
       Title="">
 
     <Grid>
-        <Button x:Name="Button_LogOut" Content="Wyloguj Się" HorizontalAlignment="Center" Height="75" Margin="0,281,0,0" VerticalAlignment="Top" Width="228" Click="Button_LogOut_Click"/>
-        <Button x:Name="Button_ShutDown" Content="Zamknij Program" HorizontalAlignment="Center" Height="74" VerticalAlignment="Top" Width="228" Margin="0,170,0,0" Click="Button_Click"/>
+        <Button x:Name="Button_LogOut" Content="Wyloguj Się" HorizontalAlignment="Center" Height="75" Margin="0,243,0,0" VerticalAlignment="Top" Width="228" Click="Button_LogOut_Click" Foreground="#FF3A414A" FontSize="20" FontWeight="Bold" Background="#FFC5BE8E" BorderBrush="#FFC39531"/>
+        <Button x:Name="Button_ShutDown" Content="Zamknij Program" HorizontalAlignment="Center" Height="74" VerticalAlignment="Top" Width="228" Margin="0,132,0,0" Click="Button_Click" Foreground="#FF3A414A" FontWeight="Bold" FontSize="20" Background="#FFC5BE8E" BorderBrush="#FFC39531"/>
 
     </Grid>
 </Page>

@@ -14,7 +14,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Nr. Konta - " HorizontalAlignment="Left" Height="38" Margin="42,10,0,0" VerticalAlignment="Top" Width="96" FontWeight="Bold" Grid.Column="1" Foreground="#FFCCCCAC"/>
-        <Button Content="Szybki Przelew na Konto" HorizontalAlignment="Left" Height="28" Margin="350,175,0,0" VerticalAlignment="Top" Width="249" Click="Button_Click" Grid.Column="1"/>
+        <Button Content="Szybki Przelew na Konto" HorizontalAlignment="Left" Height="34" Margin="350,175,0,0" VerticalAlignment="Top" Width="249" Click="Button_Click" Grid.Column="1" FontSize="18" FontWeight="Bold" Background="#FFC5BE8E" BorderBrush="#FFC39531" Foreground="#FF3A414A"/>
         <TextBox x:Name="TextBoxBalance" Grid.Column="1" HorizontalAlignment="Left" Height="52" Margin="350,123,0,0" TextWrapping="Wrap" Text="X XXX,XX PLN" VerticalAlignment="Top" Width="249" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" SelectionTextBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="White" SelectionBrush="{x:Null}"/>
         <Label Content="Dostępne środki:" HorizontalAlignment="Left" Height="40" Margin="350,83,0,0" VerticalAlignment="Top" Width="175" FontSize="20" FontWeight="Bold" Grid.Column="1" Foreground="#FFCCCCAC"/>
         <Label x:Name="LabelNumberAcc" Content="XXXX XXXX XXXX XXXX" HorizontalAlignment="Left" Height="38" Margin="108,10,0,0" VerticalAlignment="Top" Width="148" FontWeight="Bold" Grid.Column="1" Foreground="#FFCCCCAC"/>
