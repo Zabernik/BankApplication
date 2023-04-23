@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Media;
 using System.Text.RegularExpressions;
 using System.Windows.Controls.Primitives;
+using BankApplication.Classes;
 
 namespace BankApplication.PagesMainWindow
 {

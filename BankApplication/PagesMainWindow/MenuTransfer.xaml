@@ -14,7 +14,7 @@
             <ColumnDefinition Width="743*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Column="1" Content="Na Nr. Telefonu" HorizontalAlignment="Left" Height="41" Margin="0,85,0,0" VerticalAlignment="Top" Width="201" IsEnabled="False" Background="#FFC5BE8E" BorderBrush="#FFC39531" Foreground="#FF3A414A" FontSize="18" FontWeight="Bold"/>
-        <Button Grid.Column="1" Content="Na Nr. Konta" HorizontalAlignment="Left" Height="41" Margin="0,18,0,0" VerticalAlignment="Top" Width="201" Background="#FFC5BE8E" BorderBrush="#FFC39531" Foreground="#FF3A414A" IsEnabled="False" FontSize="18" FontWeight="Bold"/>
+        <Button Grid.Column="1" Content="Na Nr. Konta" HorizontalAlignment="Left" Height="41" Margin="0,18,0,0" VerticalAlignment="Top" Width="201" Background="#FFC5BE8E" BorderBrush="#FFC39531" Foreground="#FF3A414A" IsEnabled="True" FontSize="18" FontWeight="Bold" Click="Button_Click"/>
         <Button Grid.Column="1" Content="Zlecenia stałe" HorizontalAlignment="Left" Height="41" Margin="0,155,0,0" VerticalAlignment="Top" Width="201" IsEnabled="False" Background="#FFC5BE8E" BorderBrush="#FFC39531" Foreground="#FF3A414A" FontSize="18" FontWeight="Bold"/>
         <Button Grid.Column="1" Content="Odbiorcy" HorizontalAlignment="Left" Height="41" Margin="0,317,0,0" VerticalAlignment="Top" Width="201" IsEnabled="False" Background="#FFC5BE8E" BorderBrush="#FFC39531" Foreground="#FF3A414A" FontSize="18" FontWeight="Bold"/>
         <Button Content="Przelew Podatkowy" HorizontalAlignment="Left" Height="41" Margin="0,225,0,0" VerticalAlignment="Top" Width="201" Grid.Column="1" IsEnabled="False" Background="#FFC5BE8E" BorderBrush="#FFC39531" Foreground="#FF3A414A" FontWeight="Bold" FontSize="18"/>

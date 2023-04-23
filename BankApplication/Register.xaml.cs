@@ -356,7 +356,7 @@ namespace BankApplication
             }
             if (Id < 10)
             {
-                Number = "21" + Id + "0" + " " + num1 + " 0000 " + num2;
+                Number = "210" + Id + " " + num1 + " 0000 " + num2;
             }
             else
             {

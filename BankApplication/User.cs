@@ -59,6 +59,7 @@ namespace BankApplication
         [Key]
         public int Id_Transfer { get; set; }
         public DateTime DateTransfer { get; set; }
+        public string NameRecipient { get; set; }
     }
     public class Logs
     {

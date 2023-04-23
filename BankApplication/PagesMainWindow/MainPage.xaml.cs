@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankApplication.Classes;
 
 namespace BankApplication.PagesMainWindow
 {
@@ -44,7 +45,7 @@ namespace BankApplication.PagesMainWindow
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SingleTransfer singleTransfer = new SingleTransfer();
-            singleTransfer.Show();
+            singleTransfer.ShowDialog();
         }
         public (string, string, string, int) GetHistory(int ID)
         {
