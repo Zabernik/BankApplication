@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BankApplication.Classes
 {
@@ -30,6 +32,20 @@ namespace BankApplication.Classes
                     }
                 }
                 return Balanced;
+            }
+        }
+        public void SetBalance(int ID, double balance) 
+        {
+            ID = Client.IdUser;
+
+            using (var db = new SQLite())
+            {
+                var result = db.Account.SingleOrDefault(b => b.Id_User == Client.IdUser);
+                if (result != null)
+                {
+                    result.Balance = balance;
+                    db.SaveChanges();
+                }
             }
         }
     }

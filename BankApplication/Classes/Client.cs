@@ -138,5 +138,43 @@ namespace BankApplication.Classes
                        .ToList();
             MessageBox.Show(Convert.ToString(Info));
         }//?
+        public int ReadIdByUserName(string userName)
+        {
+            using (SQLite ctx = new SQLite())
+            {
+                var query = (from c in ctx.Login
+                             where c.UserName == userName
+                             select new
+                             {
+                                 c.Id_User,
+                             }
+                             ).FirstOrDefault();
+
+                if (query != null)
+                {
+                    Client.IdUser = query.Id_User;
+                }
+            }
+            return Client.IdUser;
+        }
+        public int ReadIdByAccNumber(string accNumber)
+        {
+            using (SQLite ctx = new SQLite())
+            {
+                var query = (from c in ctx.Account
+                             where c.NumberAccount == accNumber
+                             select new
+                             {
+                                 c.Id_User,
+                             }
+                             ).FirstOrDefault();
+
+                if (query != null)
+                {
+                    Client.IdUser = query.Id_User;
+                }
+            }
+            return Client.IdUser;
+        }
     }
 }

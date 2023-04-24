@@ -28,7 +28,7 @@ namespace BankApplication
         [ForeignKey("Clients")]
         public int Id_User { get; set; }
         public Clients Clients { get; set; }
-        public decimal Balance { get; set; }
+        public double Balance { get; set; }
         [Key]
         public string NumberAccount { get; set; }
         public decimal Debet { get; set; }

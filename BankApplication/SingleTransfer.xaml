@@ -11,13 +11,13 @@
             <RowDefinition Height="355*"/>
             <RowDefinition Height="81*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="TextBoxPIN" HorizontalAlignment="Center" Height="45" Margin="0,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="32" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="TextBoxPIN_Copy" HorizontalAlignment="Center" Height="45" Margin="0,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="18" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TextBoxName" HorizontalAlignment="Center" Height="45" Margin="0,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="32" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TextBoxNumberRecipient" HorizontalAlignment="Center" Height="45" Margin="0,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="19" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center" TextChanged="TextBoxNumberRecipient_TextChanged"/>
         <Label Content="Odbiorca" HorizontalAlignment="Center" Height="39" Margin="0,7,0,0" VerticalAlignment="Top" Width="266" Foreground="#FFC5BE8E" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Content="Numer Konta Odbiorcy" HorizontalAlignment="Center" Height="39" Margin="0,91,0,0" VerticalAlignment="Top" Width="266" Foreground="#FFC5BE8E" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Content="Tytuł" HorizontalAlignment="Center" Height="38" Margin="0,175,0,0" VerticalAlignment="Top" Width="266" Foreground="#FFC5BE8E" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="TextBoxPIN_Copy1" HorizontalAlignment="Center" Height="46" Margin="0,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="35" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="TextBoxPIN_Copy2" HorizontalAlignment="Center" Height="45" Margin="0,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="8" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TextBoxTitle" HorizontalAlignment="Center" Height="46" Margin="0,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="35" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TextBoxAmount" HorizontalAlignment="Center" Height="45" Margin="0,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" MaxLength="8" Background="#FFE0DEB3" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
         <Label Content="Kwota" HorizontalAlignment="Center" Height="38" Margin="0,259,0,0" VerticalAlignment="Top" Width="266" Foreground="#FFC5BE8E" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Button x:Name="ButtonSend" Content="Wyślij" HorizontalAlignment="Center" Height="45" VerticalAlignment="Center" Width="237" BorderBrush="#FFC39531" Background="#FFC5BE8E" Foreground="#FF3A414A" FontSize="20" FontWeight="Bold" Click="ButtonSend_Click" Grid.Row="1"/>
 
