@@ -33,13 +33,9 @@ namespace BankApplication.Classes
         public void TransferMoneyFrom(string difference)
         {
             Balance balance = new Balance();
-
-            
-
+         
             double start = balance.GetBalance(Client.IdUser);
             double end = start - Convert.ToDouble(difference);
-
-            MessageBox.Show(end.ToString());
 
             balance.SetBalance(Client.IdUser, end);
         }
@@ -55,12 +51,8 @@ namespace BankApplication.Classes
                 if (accRecipientExist is true)
                 {
                     int idRecipient = client.ReadIdByAccNumber(accRecipient);
-                    MessageBox.Show(idRecipient.ToString() + " IDRecipient");
                     double start = balance.GetBalance(idRecipient);
                     double end = start + Convert.ToDouble(difference);
-
-                    MessageBox.Show(end.ToString() + " end IdRecipient");
-
                     balance.SetBalance(idRecipient, end);
                 }
                 else

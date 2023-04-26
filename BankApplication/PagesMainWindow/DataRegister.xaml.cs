@@ -114,7 +114,6 @@ namespace BankApplication.PagesMainWindow
             Regex PINValidation = new Regex("^\\d{4}$");
             if (!PINValidation.Match(TextBoxPIN.Text).Success) 
             {
-                MessageBox.Show(Convert.ToString(ComboBox_Type.SelectedIndex));
                 reg.AddLog(10);
                 SystemSounds.Beep.Play();
                 MessageBox.Show("PIN musi mieć 4 cyfry", "Error #10", MessageBoxButton.OK, MessageBoxImage.Error);
