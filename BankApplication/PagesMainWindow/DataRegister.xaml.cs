@@ -248,9 +248,6 @@ namespace BankApplication.PagesMainWindow
                     conn.SaveChanges();
                     result3.Active = true;
                 }
-
-                MessageBox.Show("Przed wpisanie" + Convert.ToString(ComboBox_Type.SelectedValue));
-
                 var newContact = new Contact { Phone_Number = TextBoxPhoneNumber.Text, Mail = TextBoxMail.Text, Adress = TextBoxAdress1.Text + " " + TextBoxAdress2.Text, Id_User = ID };
                 conn.Add<Contact>(newContact);
                 conn.SaveChanges();
@@ -264,21 +261,18 @@ namespace BankApplication.PagesMainWindow
                 MessageBox.Show("Funkcja otwarta przed wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
                 if (ComboBox_Type.SelectedIndex == 1)
                 {
-                    MessageBox.Show("Po wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
                     var newBussines = new BussinesAccount { NIP = TextBoxNIP.Text, Type = Enums.ClientType.Bussines, Id_User = ID };
                     conn.Add<BussinesAccount>(newBussines);
                     conn.SaveChanges();
                 }
                 if (ComboBox_Type.SelectedIndex == 3)
                 {
-                    MessageBox.Show("Po wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
                     var newPensioner = new PensionerAccount { Number_of_ZUS_ID = TextBoxZUS.Text, Type = Enums.ClientType.Pensioner, Id_User = ID };
                     conn.Add<PensionerAccount>(newPensioner);
                     conn.SaveChanges();
                 }
                 if (ComboBox_Type.SelectedIndex == 2)
                 {
-                    MessageBox.Show("Po wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
                     var newStudent = new StudentAccount { Name_of_University = TextBoxNameUniversity.Text, End_of_Study = (DateTime)DateUniversity.SelectedDate, Type = Enums.ClientType.Student, Id_User = ID };
                     conn.Add<StudentAccount>(newStudent);
                     conn.SaveChanges();

@@ -140,6 +140,7 @@ namespace BankApplication.Classes
         }//?
         public int ReadIdByUserName(string userName)
         {
+            int x = 0;
             using (SQLite ctx = new SQLite())
             {
                 var query = (from c in ctx.Login
@@ -152,15 +153,16 @@ namespace BankApplication.Classes
 
                 if (query != null)
                 {
-                    Client.IdUser = query.Id_User;
+                    x = query.Id_User;
                 }
             }
-            return Client.IdUser;
+            return x;
         }
         public int ReadIdByAccNumber(string accNumber)
         {
+            int x = 0;
             using (SQLite ctx = new SQLite())
-            {
+            {                
                 var query = (from c in ctx.Account
                              where c.NumberAccount == accNumber
                              select new
@@ -171,10 +173,10 @@ namespace BankApplication.Classes
 
                 if (query != null)
                 {
-                    Client.IdUser = query.Id_User;
+                    x = query.Id_User;
                 }
             }
-            return Client.IdUser;
+            return x;
         }
     }
 }

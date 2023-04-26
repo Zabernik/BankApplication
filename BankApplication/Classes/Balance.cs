@@ -36,13 +36,12 @@ namespace BankApplication.Classes
         }
         public void SetBalance(int ID, double balance) 
         {
-            ID = Client.IdUser;
-
             using (var db = new SQLite())
             {
-                var result = db.Account.SingleOrDefault(b => b.Id_User == Client.IdUser);
+                var result = db.Account.SingleOrDefault(b => b.Id_User == ID);
                 if (result != null)
                 {
+                    MessageBox.Show(balance.ToString());
                     result.Balance = balance;
                     db.SaveChanges();
                 }
