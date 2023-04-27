@@ -70,7 +70,17 @@ namespace BankApplication.PagesMainWindow
 
                     if (query != null)
                     {
-                        x = query.Title + "  " + query.Amount + " PLN  " + query.NumberAccountRecipient;
+                        string title = query.Title;
+                        string amount = query.Amount.ToString();
+                        for (int j = 30; j > title.Length;)
+                        {
+                            title = title + " ";
+                        }
+                        for (int j = 8; j > amount.Length;)
+                        {
+                            amount = amount + " ";
+                        }
+                        x = query.Amount + " PLN     " + title + "  " + query.NumberAccountRecipient;
                         i = query.Id_Transfer;
                     }
                 }
@@ -90,7 +100,17 @@ namespace BankApplication.PagesMainWindow
 
                     if (query != null)
                     {
-                        y = query.Title + "  " + query.Amount + " PLN  " + query.NumberAccountRecipient;
+                        string title = query.Title;
+                        string amount = query.Amount.ToString();
+                        for (int j = 30; j > title.Length;)
+                        {
+                            title = title + " ";
+                        }
+                        for (int j = 8; j > amount.Length;)
+                        {
+                            amount = amount + " ";
+                        }
+                        y = query.Amount + " PLN     " + title + "  " + query.NumberAccountRecipient;
                         i = query.Id_Transfer;
                     }
                 }
@@ -110,7 +130,17 @@ namespace BankApplication.PagesMainWindow
 
                     if (query != null)
                     {
-                        z = query.Title + "  " + query.Amount + " PLN  " + query.NumberAccountRecipient;
+                        string title = query.Title;
+                        string amount = query.Amount.ToString();
+                        for (int j = 30; j > title.Length;)
+                        {
+                            title = title + " ";
+                        }
+                        for (int j = 8; j > amount.Length;)
+                        {
+                            amount = amount + " ";
+                        }
+                        z = query.Amount + " PLN     " + title + "  " + query.NumberAccountRecipient;
                         i = query.Id_Transfer;
                     }
                 }

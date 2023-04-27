@@ -10,8 +10,8 @@ namespace BankApplication.Classes
 {
     class Balance
     {
-        public double Balanced { get; set; }
-        public double GetBalance(int ID)
+        public decimal Balanced { get; set; }
+        public decimal GetBalance(int ID)
         {
             {
                 Balanced = default;
@@ -28,20 +28,19 @@ namespace BankApplication.Classes
                     if (query != null)
                     {
 
-                        Balanced = Convert.ToDouble(query.Balance);
+                        Balanced = Convert.ToDecimal(query.Balance);
                     }
                 }
                 return Balanced;
             }
         }
-        public void SetBalance(int ID, double balance) 
+        public void SetBalance(int ID, decimal balance) 
         {
             using (var db = new SQLite())
             {
                 var result = db.Account.SingleOrDefault(b => b.Id_User == ID);
                 if (result != null)
                 {
-                    MessageBox.Show(balance.ToString());
                     result.Balance = balance;
                     db.SaveChanges();
                 }

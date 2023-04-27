@@ -12,13 +12,13 @@ namespace BankApplication.Classes
         public int Id_User { get; }
         public string NumberAccountSender { get;  }
         public string NumberAccountRecipient { get; }
-        public double Amount { get; }
+        public decimal Amount { get; }
         public string Title { get; }
         public int Id_Transfer { get; }
         public DateTime DateTransfer { get; }
         public string NameRecipient { get; }
 
-        public HistoryTransfer(int idUser, string accSender, string accRecipient, double amount, string title, int idTransfer, DateTime dateTransfer, string nameRecipient)
+        public HistoryTransfer(int idUser, string accSender, string accRecipient, decimal amount, string title, int idTransfer, DateTime dateTransfer, string nameRecipient)
         {
             Transfer tr = new Transfer();
             Id_User = idUser;
@@ -35,7 +35,7 @@ namespace BankApplication.Classes
         
         }
 
-        public void UploadHistoryTransfer(string accRecipient, double amount, string title, string nameRecipient)
+        public void UploadHistoryTransfer(string accRecipient, decimal amount, string title, string nameRecipient)
         {
             Client x = new Client();
             x = x.LoadData(Client.IdUser);
@@ -45,6 +45,10 @@ namespace BankApplication.Classes
                 conn.Add<History>(newRecord);
                 conn.SaveChanges();
             }
+        }
+        public void GetHistory(int ID)
+        {
+
         }
     }
 }

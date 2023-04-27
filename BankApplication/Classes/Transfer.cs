@@ -9,15 +9,6 @@ namespace BankApplication.Classes
 {
     public class Transfer
     {
-        public int Id_User { get; set; }
-        public string NumberAccountSender { get; set; }
-        public string NumberAccountRecipient { get; set; }
-        public double Amount { get; set; }
-        public string Title { get; set; }
-        public int Id_Transfer { get; set; }
-        public DateTime DateTransfer { get; set; }
-        public string NameRecipient { get; set; }
-
         public Transfer()
         {
 
@@ -33,9 +24,9 @@ namespace BankApplication.Classes
         public void TransferMoneyFrom(string difference)
         {
             Balance balance = new Balance();
-         
-            double start = balance.GetBalance(Client.IdUser);
-            double end = start - Convert.ToDouble(difference);
+
+            decimal start = balance.GetBalance(Client.IdUser);
+            decimal end = start - Convert.ToDecimal(difference);
 
             balance.SetBalance(Client.IdUser, end);
         }
@@ -51,8 +42,8 @@ namespace BankApplication.Classes
                 if (accRecipientExist is true)
                 {
                     int idRecipient = client.ReadIdByAccNumber(accRecipient);
-                    double start = balance.GetBalance(idRecipient);
-                    double end = start + Convert.ToDouble(difference);
+                    decimal start = balance.GetBalance(idRecipient);
+                    decimal end = start + Convert.ToDecimal(difference);
                     balance.SetBalance(idRecipient, end);
                 }
                 else
@@ -61,6 +52,14 @@ namespace BankApplication.Classes
                 }
 
             }
+        }
+        public bool SendToMySelf(string accRecipient, string accSender)
+        {
+            if (accRecipient == accSender)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

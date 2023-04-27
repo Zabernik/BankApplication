@@ -48,7 +48,7 @@ namespace BankApplication
 
             transfer.TransferMoneyFrom(TextBoxAmount.Text);
             transfer.TransferMoneyTo(TextBoxAmount.Text, TextBoxNumberRecipient.Text);
-            historyTransfer.UploadHistoryTransfer(TextBoxNumberRecipient.Text,Convert.ToDouble(TextBoxAmount.Text),TextBoxTitle.Text,TextBoxName.Text);
+            historyTransfer.UploadHistoryTransfer(TextBoxNumberRecipient.Text,Convert.ToDecimal(TextBoxAmount.Text),TextBoxTitle.Text,TextBoxName.Text);
             this.Close();
         }
 
@@ -93,7 +93,7 @@ namespace BankApplication
             }
             try
             {
-                if (Convert.ToDouble(TextBoxAmount.Text) == 0)
+                if (Convert.ToDecimal(TextBoxAmount.Text) == 0)
                 {
                     SystemSounds.Beep.Play();
                     MessageBox.Show("Błędna kwota przelewu", "Error #104", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -102,6 +102,15 @@ namespace BankApplication
             }
             catch
             {
+                return false;
+            }
+            Transfer transfer = new Transfer();
+            Client client = new Client();
+            client = client.LoadData(Client.IdUser);
+            if (transfer.SendToMySelf(TextBoxNumberRecipient.Text, client.NumberAcc))
+            {
+                SystemSounds.Beep.Play();
+                MessageBox.Show("Nie możesz wykonywać przelewu do samego siebie", "Error #104", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
                 return true;

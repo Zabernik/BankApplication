@@ -16,14 +16,14 @@ namespace BankApplication.Classes
         public static int IdUser { get; set; }
         public string NumberAcc { get; }
         public bool Active { get; }
-        public double Balance { get; }
+        public decimal Balance { get; }
         public string PESEL { get; }
         public string NumberID { get; }
         public string PhoneNumber { get; }
         public string Mail { get; }
         public string Adress { get; }
 
-        public Client(bool active, string name, ClientType clientType, int idUser, string nrAcc, double balance, string PESEL, string numberID, string mail, string phoneNumber, string adress)
+        public Client(bool active, string name, ClientType clientType, int idUser, string nrAcc, decimal balance, string PESEL, string numberID, string mail, string phoneNumber, string adress)
         {
             Active = active;
             FullName = name;
@@ -54,7 +54,7 @@ namespace BankApplication.Classes
             string numberAcc = acc.GetNumberAcc(ID);
             string PESEL = GetPESEL(ID);
             string numberId = GetNumberID(ID);
-            double balance = bal.GetBalance(ID);
+            decimal balance = bal.GetBalance(ID);
             ClientType type = acc.GetType(ID);
             string mail = con.GetMail(ID);
             string adress = adr.GetAdress(ID);
