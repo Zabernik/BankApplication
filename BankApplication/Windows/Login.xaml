@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankApplication"
         mc:Ignorable="d"
+        Title="BankAppliaction"
         Height="389" Width="289"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid Background="#FF555A61">
         <Grid.RowDefinitions>
             <RowDefinition/>

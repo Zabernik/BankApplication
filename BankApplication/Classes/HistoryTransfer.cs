@@ -43,7 +43,7 @@ namespace BankApplication.Classes
             x = x.LoadData(Client.IdUser);
             using (SQLite conn = new SQLite())
             {
-                var newRecord = new History { Id_User = Client.IdUser, NumberAccountSender = x.NumberAcc, NumberAccountRecipient = accRecipient, Amount = amount, Title = title, DateTransfer = DateTime.Now, NameRecipient = nameRecipient };
+                var newRecord = new History { Id_User = Client.IdUser, NumberAccountSender = x.NumberAcc, NumberAccountRecipient = accRecipient, Amount = amount, Title = title, DateTransfer = DateTime.Now , NameRecipient = nameRecipient };
                 conn.Add<History>(newRecord);
                 conn.SaveChanges();
             }
