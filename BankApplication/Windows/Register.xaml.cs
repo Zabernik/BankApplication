@@ -29,7 +29,7 @@ namespace BankApplication
         public Register()
         {
             InitializeComponent();
-            StrenghtIndicator(TextBoxPass.Text);
+            StrenghtIndicator(PasswordBox.Password);
         }
         public Enums.PasswordStrenght ScorePass { get; set; }
 
@@ -95,7 +95,7 @@ namespace BankApplication
         public void ButtonCheck()
         {
 
-            if (StatusAllChecked(false) == true && !String.IsNullOrEmpty(TextBoxName.Text) && !String.IsNullOrEmpty(TextBoxLastName.Text) && !String.IsNullOrEmpty(TextBoxPESEL.Text) && !String.IsNullOrEmpty(TextBoxNrID.Text) && !String.IsNullOrEmpty(TextBoxUser.Text) && !String.IsNullOrEmpty(TextBoxPass.Text))
+            if (StatusAllChecked(false) == true && !String.IsNullOrEmpty(TextBoxName.Text) && !String.IsNullOrEmpty(TextBoxLastName.Text) && !String.IsNullOrEmpty(TextBoxPESEL.Text) && !String.IsNullOrEmpty(TextBoxNrID.Text) && !String.IsNullOrEmpty(TextBoxUser.Text) && !String.IsNullOrEmpty(PasswordBox.Password))
             {
                 ButtonRegister.IsEnabled = true;
             }
@@ -178,7 +178,7 @@ namespace BankApplication
                 AddLog(8);
                 return 8;
             }
-            if (CheckStrength(TextBoxPass.Text) < PasswordStrenght.Medium)
+            if (CheckStrength(PasswordBox.Password) < PasswordStrenght.Medium)
             {
                 AddLog(9);
                 return 9;
@@ -193,7 +193,7 @@ namespace BankApplication
                 conn.Add<Clients>(newClient);
                 conn.SaveChanges();
 
-                var newUser = new User { UserName = TextBoxUser.Text, Password = TextBoxPass.Text, Id_User = ReadId() };
+                var newUser = new User { UserName = TextBoxUser.Text, Password = PasswordBox.Password, Id_User = ReadId() };
                 conn.Add<User>(newUser);
                 conn.SaveChanges();
 
@@ -224,10 +224,10 @@ namespace BankApplication
             return PasswordStrenght.Weak;
         }
 
-        private void TextBoxPass_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBoxPass_TextChanged(object sender, RoutedEventArgs args)
         {
             ButtonCheck();
-            StrenghtIndicator(TextBoxPass.Text);
+            StrenghtIndicator(PasswordBox.Password);
         }
         private void StrenghtIndicator(string Input)
         {

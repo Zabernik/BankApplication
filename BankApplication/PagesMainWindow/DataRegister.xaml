@@ -15,7 +15,7 @@
             <ColumnDefinition Width="143*"/>
         </Grid.ColumnDefinitions>
         <Label Content="To twoje pierwsze logowanie do aplikacji. Dziękuje za rejestrację. &#xD;&#xA;Proszę uzupełnić informację potrzebne do aktywacji twojego konta." HorizontalAlignment="Left" Height="67" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Foreground="#FFC39531" FontFamily="Calibri"/>
-        <TextBox x:Name="TextBoxPIN" HorizontalAlignment="Left" Height="22" Margin="51,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" MaxLength="4" Background="#FFE0DEB3"/>
+        <PasswordBox x:Name="PINBox" HorizontalAlignment="Left" Height="22" MaxLength="4" Width="210" VerticalAlignment="Top" Background="#FFE0DEB3" BorderBrush="{x:Null}" Margin="51,108,0,0"/>
         <TextBox x:Name="TextBoxPhoneNumber" HorizontalAlignment="Left" Height="22" Margin="51,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Background="#FFE0DEB3"/>
         <TextBox x:Name="TextBoxMail" HorizontalAlignment="Left" Height="22" Margin="51,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Background="#FFE0DEB3"/>
         <Label Content="PIN" HorizontalAlignment="Left" Height="26" Margin="51,82,0,0" VerticalAlignment="Top" Width="210" Foreground="#FFC5BE8E"/>

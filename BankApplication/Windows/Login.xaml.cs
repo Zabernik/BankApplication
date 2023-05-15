@@ -30,11 +30,11 @@ namespace BankApplication
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
             var Username = TextBoxLog.Text;
-            var Password = TextBoxPass.Text;
+            var Password = PasswordBox.Password;
 
             using (SQLite conn = new SQLite())
             {
-                bool userexist = conn.Login.Any(user => user.UserName == Username && user.Password == Password);
+                bool userexist = conn.Login.Any(user => user.UserName == Username && user.Password == Password );
                 if(userexist) 
                 {
                     LogIn();

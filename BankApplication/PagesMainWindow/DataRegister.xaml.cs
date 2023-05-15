@@ -112,7 +112,7 @@ namespace BankApplication.PagesMainWindow
         {
             Register reg = new Register();
             Regex PINValidation = new Regex("^\\d{4}$");
-            if (!PINValidation.Match(TextBoxPIN.Text).Success) 
+            if (!PINValidation.Match(PINBox.Password).Success) 
             {
                 reg.AddLog(10);
                 SystemSounds.Beep.Play();
@@ -231,7 +231,7 @@ namespace BankApplication.PagesMainWindow
                 var result = conn.Login.SingleOrDefault(b => b.Id_User == ID);
                 if (result != null)
                 {
-                    result.PIN = TextBoxPIN.Text;
+                    result.PIN = PINBox.Password;
                     conn.SaveChanges();
                 }
                 var result2 = conn.Client.SingleOrDefault(b => b.Id_User == ID);

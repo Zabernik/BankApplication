@@ -14,11 +14,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox x:Name="TextBoxLog" HorizontalAlignment="Center" Height="37" Margin="0,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFE0DEB3" BorderBrush="{x:Null}"/>
-        <TextBox x:Name="TextBoxPass" HorizontalAlignment="Center" Height="37" Margin="0,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFE0DEB3" BorderBrush="{x:Null}"/>
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Center" Height="37" Width="194" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFE0DEB3" BorderBrush="{x:Null}" Margin="0,128,0,0"/>
         <Button x:Name="ButtonLogIn" Content="Zaloguj" HorizontalAlignment="Center" Height="51" Margin="0,208,0,0" VerticalAlignment="Top" Width="194" Click="ButtonLogIn_Click" Background="#FFC5BE8E" FontWeight="Bold" FontSize="20" Foreground="#FF3A414A" IsDefault="True" BorderBrush="#FFC39531"/>
         <Label Content="LOGIN" HorizontalAlignment="Center" Height="30" Margin="0,26,0,0" VerticalAlignment="Top" Width="194" FontWeight="Bold" Foreground="#FFC5BE8E" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
         <Label Content="HASŁO" HorizontalAlignment="Center" Height="30" Margin="0,98,0,0" VerticalAlignment="Top" Width="194" FontWeight="Bold" Foreground="#FFC5BE8E" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
         <Button x:Name="ButtonRegister" Content="Rejestracja" HorizontalAlignment="Center" Height="51" Margin="0,284,0,0" VerticalAlignment="Top" Width="194" Click="ButtonRegister_Click" Background="#FFC5BE8E" FontWeight="Bold" FontSize="20" Foreground="#FF3A414A" BorderBrush="#FFC39531"/>
+        
 
     </Grid>
 </Window>
