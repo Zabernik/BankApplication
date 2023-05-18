@@ -24,16 +24,18 @@ namespace BankApplication.PagesMainWindow
         public MainPage()
         {
             InitializeComponent();
-            LoadText();
+            LoadDataUser();
             HistoryWidgetLoad();
         }
-        public void LoadText()
+        /// <summary>Loads data from DB of user logged in.</summary>
+        public void LoadDataUser()
         {
             Client x = new Client();
             x = x.LoadData(Client.IdUser);
             LabelNumberAcc.Content = x.NumberAcc;
             TextBoxBalance.Text = x.Balance.ToString() + " PLN";
         }
+        /// <summary>Load last 3 records history of transfer to widget on mainpage</summary>
         public void HistoryWidgetLoad()
         {
             Client y = new Client();

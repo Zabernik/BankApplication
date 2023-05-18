@@ -8,9 +8,13 @@ using System.Windows;
 
 namespace BankApplication.Classes
 {
+    /// <summary>This class defines Balance, methods and properties</summary>
     class Balance
     {
         public decimal Balanced { get; set; }
+        /// <summary>Gets the balance.</summary>
+        /// <param name="ID">The identifier.</param>
+        /// <returns>This method return balance of acc by id user</returns>
         public decimal GetBalance(int ID)
         {
             {
@@ -34,6 +38,9 @@ namespace BankApplication.Classes
                 return Balanced;
             }
         }
+        /// <summary>This method sets a balance of acc by id user</summary>
+        /// <param name="ID">The identifier of user.</param>
+        /// <param name="balance">The balance of acc.</param>
         public void SetBalance(int ID, decimal balance) 
         {
             using (var db = new SQLite())

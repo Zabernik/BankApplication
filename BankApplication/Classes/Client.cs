@@ -9,6 +9,7 @@ using System.Windows;
 
 namespace BankApplication.Classes
 {
+    /// <summary>This class defines Client, methods and properties</summary>
     public sealed class Client
     {
         public string FullName { get; }
@@ -42,6 +43,9 @@ namespace BankApplication.Classes
 
         }
 
+        /// <summary>Loads the data.</summary>
+        /// <param name="ID">The identifier.</param>
+        /// <returns>This method return new Client with data from DB using id user</returns>
         public Client LoadData(int ID)
         {
             var bal = new Balance();
@@ -86,6 +90,9 @@ namespace BankApplication.Classes
             }
             return x;
         }
+        /// <summary>Gets the pesel.</summary>
+        /// <param name="ID">The identifier.</param>
+        /// <returns>This method return PESEL by id user</returns>
         public string GetPESEL(int ID)
         {
             {
@@ -108,6 +115,9 @@ namespace BankApplication.Classes
                 return x;
             }
         }
+        /// <summary>Gets the number identifier.</summary>
+        /// <param name="ID">The identifier.</param>
+        /// <returns>This method return ID Number by id user</returns>
         public string GetNumberID(int ID)
         {
             {
@@ -130,14 +140,9 @@ namespace BankApplication.Classes
                 return x;
             }
         }
-        public void GetInfo(int ID)
-        {
-            var context = new SQLite();
-            var Info = context.Client
-                       .Where(s => s.Id_User == ID)
-                       .ToList();
-            MessageBox.Show(Convert.ToString(Info));
-        }//?
+        /// <summary>Reads the name of the identifier by User Name.</summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <returns>This method return id user by his User Name</returns>
         public int ReadIdByUserName(string userName)
         {
             int x = 0;
@@ -158,6 +163,9 @@ namespace BankApplication.Classes
             }
             return x;
         }
+        /// <summary>Reads the identifier by acc number.</summary>
+        /// <param name="accNumber">The acc number.</param>
+        /// <returns>This method return id user by Acc Number</returns>
         public int ReadIdByAccNumber(string accNumber)
         {
             int x = 0;
@@ -165,6 +173,26 @@ namespace BankApplication.Classes
             {                
                 var query = (from c in ctx.Account
                              where c.NumberAccount == accNumber
+                             select new
+                             {
+                                 c.Id_User,
+                             }
+                             ).FirstOrDefault();
+
+                if (query != null)
+                {
+                    x = query.Id_User;
+                }
+            }
+            return x;
+        }
+        public int ReadIdByPESEL(string PESEL)
+        {
+            int x = 0;
+            using (SQLite ctx = new SQLite())
+            {
+                var query = (from c in ctx.Client
+                             where c.PESEL == PESEL
                              select new
                              {
                                  c.Id_User,

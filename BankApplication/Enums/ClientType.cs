@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Enums
 {
+    /// <summary>This enums make a few type of client bank.</summary>
     public enum ClientType
     {
         Standard,

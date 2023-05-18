@@ -23,6 +23,9 @@ namespace BankApplication
             databaseFacade.EnsureCreated();
             LoadDataDB(TestAdmin(),TestType());
         }
+        /// <summary>This method create types of client in DB and also admin acc.</summary>
+        /// <param name="AdminExist">if set to <c>true</c> [admin exist].</param>
+        /// <param name="TypesExist">if set to <c>true</c> [types exist].</param>
         private void LoadDataDB(bool AdminExist, bool TypesExist)
         {
             if (TypesExist == false)
@@ -68,6 +71,7 @@ namespace BankApplication
                 }
             }
         }
+        /// <summary>This method testing whether admin acc exist</summary>
         private bool TestAdmin()
         {
             using (SQLite conn = new SQLite())
@@ -83,6 +87,7 @@ namespace BankApplication
                 }
             }
         }
+        /// <summary>This method testing whether type client exist</summary>
         private bool TestType()
         {
             using (SQLite conn = new SQLite())

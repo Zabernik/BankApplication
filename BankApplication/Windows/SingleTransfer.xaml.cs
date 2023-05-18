@@ -41,6 +41,7 @@ namespace BankApplication
             }
             
         }
+        /// <summary>When all requirment are met this method update balance of all acc and add new record to DB</summary>
         public void Succes()
         {
             Transfer transfer = new Transfer();
@@ -52,16 +53,19 @@ namespace BankApplication
             this.Close();
         }
 
+        /// <summary>This method making our number account to add extra "spaces" beetwen digits<br />From 0000111122223333 to 0000 1111 2222 3333</summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="TextChangedEventArgs" /> instance containing the event data.</param>
         private void TextBoxNumberRecipient_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //Regex accTest1 = new Regex("^\\d{1,4}$"); //1234
             Regex accTest2 = new Regex("^\\d{1,16}$"); //1234123412341234
             if (accTest2.Match(TextBoxNumberRecipient.Text).Success && TextBoxNumberRecipient.Text.Length == 16)
             {
                 TextBoxNumberRecipient.Text = string.Join(" ", Enumerable.Range(0, TextBoxNumberRecipient.Text.Length / 4).Select(i => TextBoxNumberRecipient.Text.Substring(i * 4, 4)));
             }
         }
-        public bool CheckRequirments()
+        /// <summary>Checks the requirments.</summary>
+        private bool CheckRequirments()
         {
             Regex accNumberValidation = new Regex("^\\d{4}[ ]{1}\\d{4}[ ]{1}\\d{4}[ ]{1}\\d{4}$");
             if (!accNumberValidation.Match(TextBoxNumberRecipient.Text).Success)

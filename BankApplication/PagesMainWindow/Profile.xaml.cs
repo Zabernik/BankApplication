@@ -27,6 +27,7 @@ namespace BankApplication.PagesMainWindow
             InitializeComponent();
             LoadText();
         }
+        /// <summary>Loads data from logged in user and fill all textboxes with them.</summary>
         public void LoadText()
         {
             Client x = new Client();
@@ -38,11 +39,6 @@ namespace BankApplication.PagesMainWindow
             TextBlockAdress.Text = x.Adress;
             TextBlockMail.Text = x.Mail;
             TextBlockPhone.Text = x.PhoneNumber;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

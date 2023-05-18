@@ -33,6 +33,8 @@ namespace BankApplication.PagesMainWindow
         {
             TypeRegister(Convert.ToString(ComboBox_Type.SelectedValue));
         }
+        /// <summary>This method change visibility of textbox to fill correct information depends on type acc</summary>
+        /// <param name="type">The type.</param>
         private void TypeRegister(string type) 
         { 
             if (type == "System.Windows.Controls.ComboBoxItem: Bussines")
@@ -90,11 +92,12 @@ namespace BankApplication.PagesMainWindow
         }
         private void ButtonAccept_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckReqirements() == true)
+            if (CheckRequirements() == true)
             {
                 Succes();
             }
         }
+        /// <summary>This method is used to accept all filled data and starting other method to update data to DB.</summary>
         private void Succes()
         {
             MessageBoxResult dialogResult = MessageBox.Show("Czy chcesz zaakceptować wprowadzone dane i je zapisać? ","",MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -108,7 +111,9 @@ namespace BankApplication.PagesMainWindow
 
             }
         }
-        private bool CheckReqirements()
+        /// <summary>This method is checking all requirements.</summary>
+        /// <returns>Return true when all of requirements are met</returns>
+        private bool CheckRequirements()
         {
             Register reg = new Register();
             Regex PINValidation = new Regex("^\\d{4}$");
@@ -138,8 +143,6 @@ namespace BankApplication.PagesMainWindow
             try
             {
                 var addr = new System.Net.Mail.MailAddress(TextBoxMail.Text);
-                //return addr.Address == trimmedEmail; <---source mail adress
-                //MessageBox.Show(Convert.ToString(addr.Address == trimmedEmail));
             }
             catch
             {
@@ -222,6 +225,7 @@ namespace BankApplication.PagesMainWindow
             }
             return true;
         }
+        /// <summary>This method updates the data to DB</summary>
         private void UpdateData()
         {
             int ID = Client.IdUser;
@@ -252,12 +256,12 @@ namespace BankApplication.PagesMainWindow
                 conn.SaveChanges();
             }
         }
+        /// <summary>This method uploads the data to DB.</summary>
         private void UploadData()
         {
             int ID = Client.IdUser;
             using (SQLite conn = new SQLite())
             {
-                MessageBox.Show("Funkcja otwarta przed wpisaniu" + Convert.ToString(ComboBox_Type.SelectedValue));
                 if (ComboBox_Type.SelectedIndex == 1)
                 {
                     var newBussines = new BussinesAccount { NIP = TextBoxNIP.Text, Type = Enums.ClientType.Bussines, Id_User = ID };
@@ -278,6 +282,9 @@ namespace BankApplication.PagesMainWindow
                 }
             }
         }
+        /// <summary>Tests uniqe the number acc.</summary>
+        /// <param name="NumberTest">The number test.</param>
+        /// <returns>This method return true when number is already register in app.</returns>
         private bool TestNumberAcc(string NumberTest)
         {
             using (SQLite conn = new SQLite())
@@ -293,6 +300,9 @@ namespace BankApplication.PagesMainWindow
                 }
             }
         }
+        /// <summary>Tests unique the mail acc.</summary>
+        /// <param name="MailTest">The mail test.</param>
+        /// <returns>This method return true when mail is already register in app</returns>
         private bool TestMailAcc(string MailTest)
         {
             using (SQLite conn = new SQLite())
@@ -308,6 +318,9 @@ namespace BankApplication.PagesMainWindow
                 }
             }
         }
+        /// <summary>Tests unique the nip acc.</summary>
+        /// <param name="NIPTest">The nip test.</param>
+        /// <returns>This method return true when NIP is already register in app</returns>
         private bool TestNIPAcc(string NIPTest)
         {
             using (SQLite conn = new SQLite())
@@ -323,6 +336,9 @@ namespace BankApplication.PagesMainWindow
                 }
             }
         }
+        /// <summary>Tests unique the zus acc.</summary>
+        /// <param name="ZUSTest">The zus test.</param>
+        /// <returns>This method return true when ZUS number is already register in app</returns>
         private bool TestZUSAcc(string ZUSTest)
         {
             using (SQLite conn = new SQLite())

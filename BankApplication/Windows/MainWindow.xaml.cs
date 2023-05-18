@@ -30,7 +30,6 @@ namespace BankApplication
         {
             var selected = sidebar.SelectedItem as NavButton;
             navframe.Navigate(selected.NavLink);
-            //BlockNav();
         }
         public void Active()
         {
@@ -44,29 +43,6 @@ namespace BankApplication
             {
                 sidebar.SelectedIndex = 0;
             }
-        }
-        public void BlockNav() //problem z blokowaniem menu podczas rejestracji danych
-        {
-              if (sidebar.SelectedIndex == 6)
-              {
-              NavHome.IsEnabled = false;
-              NavCurrency.IsEnabled = false;
-              NavHistory.IsEnabled = false;
-              NavCards.IsEnabled = false;
-              NavProfile.IsEnabled = false;
-              NavTransfer.IsEnabled = false;
-              NavExit.IsEnabled = false;
-              }
-              else
-              {
-              NavHome.IsEnabled = true;
-              NavCurrency.IsEnabled = true;
-              NavHistory.IsEnabled = true;
-              NavCards.IsEnabled = true;
-              NavProfile.IsEnabled = true;
-              NavTransfer.IsEnabled = true;
-              NavExit.IsEnabled = true;
-              }
-        }        
+        }  
     }
 }

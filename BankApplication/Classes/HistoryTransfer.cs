@@ -9,6 +9,7 @@ using System.Xml;
 
 namespace BankApplication.Classes
 {
+    /// <summary>This class defines History of Transfer, methods and properties</summary>
     public class HistoryTransfer
     {
         public int Id_User { get; }
@@ -37,6 +38,11 @@ namespace BankApplication.Classes
 
         }
 
+        /// <summary>Uploads the history transfer to DB.</summary>
+        /// <param name="accRecipient">The number of acc recipient.</param>
+        /// <param name="amount">The amount to transfer.</param>
+        /// <param name="title">The title of transfer.</param>
+        /// <param name="nameRecipient">The name of recipient.</param>
         public void UploadHistoryTransfer(string accRecipient, decimal amount, string title, string nameRecipient)
         {
             Client x = new Client();
@@ -48,6 +54,9 @@ namespace BankApplication.Classes
                 conn.SaveChanges();
             }
         }
+        /// <summary>Gets the history of 3 last transfers acc.</summary>
+        /// <param name="NumberAcc">The number acc logged user.</param>
+        /// <returns>This method return last 3 transfer from DB and setting flag that transfer when was received or sent</returns>
         public (string, string, string, bool, bool, bool) GetHistory(string NumberAcc)
         {
             {

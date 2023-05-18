@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankApplication
 {
+    /// <summary>This class defines tables and alias of DB</summary>
     public class SQLite : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

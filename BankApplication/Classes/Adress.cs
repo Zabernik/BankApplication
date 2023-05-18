@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Classes
 {
+    /// <summary>This class defines AdressData, methods and properties</summary>
     public class Adress
     {
         public string? Adres { get; set; }
+        /// <summary>Gets the adress.</summary>
+        /// <param name="ID">The identifier.</param>
+        /// <returns>This method return adress of acc by id user</returns>
         public string GetAdress(int ID)
         {
             {

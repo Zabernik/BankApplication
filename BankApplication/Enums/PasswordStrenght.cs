@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Enums
 {
+    /// <summary>This enums make a few marks strenght of password.</summary>
     public enum PasswordStrenght
     {
         Blank = 0,

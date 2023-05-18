@@ -13,14 +13,8 @@ namespace BankApplication.Classes
         {
 
         }
-        public void TransferFromTo(string accSender, string accRecipient)
-        {
-
-        }
-        public string GetName(string name)
-        {
-            return name;
-        }
+        /// <summary>This method deducted difference from balance acc sending transfer.</summary>
+        /// <param name="difference">Amount of transfer</param>
         public void TransferMoneyFrom(string difference)
         {
             Balance balance = new Balance();
@@ -30,6 +24,9 @@ namespace BankApplication.Classes
 
             balance.SetBalance(Client.IdUser, end);
         }
+        /// <summary>This method add difference to balance acc receiving in that db by number of acc.</summary>
+        /// <param name="difference">The difference.</param>
+        /// <param name="accRecipient">The acc recipient.</param>
         public void TransferMoneyTo(string difference, string accRecipient)
         {
             Balance balance = new Balance();
@@ -53,6 +50,10 @@ namespace BankApplication.Classes
 
             }
         }
+        /// <summary>Method to test whether user sending transfer to himself.</summary>
+        /// <param name="accRecipient">The acc recipient.</param>
+        /// <param name="accSender">The acc sender.</param>
+        /// <returns>This method return true if user try to send transfer to himself</returns>
         public bool SendToMySelf(string accRecipient, string accSender)
         {
             if (accRecipient == accSender)

@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using System.Media;
+using BankApplication.Classes;
 
 namespace BankApplication
 {
@@ -92,6 +93,7 @@ namespace BankApplication
         {
             ButtonCheck();
         }
+        /// <summary>This method turn button on/off depend on filling all data in gap</summary>
         public void ButtonCheck()
         {
 
@@ -124,6 +126,7 @@ namespace BankApplication
             CheckBoxPolicy3.IsChecked = x;
             CheckBoxPolicy4.IsChecked = x;
         }
+        /// <summary>Checking if all require checkbox is checked.</summary>
         public bool StatusAllChecked(bool Need)
         {
             if (Need == true && CheckBoxPolicy.IsChecked == true && CheckBoxPolicy2.IsChecked == true && CheckBoxPolicy3.IsChecked == true && CheckBoxPolicy4.IsChecked == true)
@@ -140,6 +143,7 @@ namespace BankApplication
             }
         }
 
+        /// <summary>Checks the requirements of register.</summary>
         public int CheckRequirements()
         {
             if (TextBoxName.Text.Length > 12)
@@ -189,15 +193,17 @@ namespace BankApplication
         {
             using (SQLite conn = new SQLite())
             {
+                Client client = new Client();
+
                 var newClient = new Clients { FirstName = TextBoxName.Text, LastName = TextBoxLastName.Text, PESEL = TextBoxPESEL.Text, NumberID = TextBoxNrID.Text };
                 conn.Add<Clients>(newClient);
                 conn.SaveChanges();
 
-                var newUser = new User { UserName = TextBoxUser.Text, Password = PasswordBox.Password, Id_User = ReadId() };
+                var newUser = new User { UserName = TextBoxUser.Text, Password = PasswordBox.Password, Id_User = client.ReadIdByPESEL(TextBoxPESEL.Text) };
                 conn.Add<User>(newUser);
                 conn.SaveChanges();
 
-                var newAccount = new Account { Balance = 0, NumberAccount = CreateNumberAcc(ReadId()), Active = false, Debet = 0, Id_User = ReadId() };
+                var newAccount = new Account { Balance = 0, NumberAccount = CreateNumberAcc(client.ReadIdByPESEL(TextBoxPESEL.Text)), Active = false, Debet = 0, Id_User = client.ReadIdByPESEL(TextBoxPESEL.Text) };
                 conn.Add<Account>(newAccount);
                 conn.SaveChanges();
             }
@@ -206,6 +212,9 @@ namespace BankApplication
             log.Show();
             Close();
         }
+        /// <summary>Checks the strength of password and set that</summary>
+        /// <param name="password">The password.</param>
+        /// <returns>This method return value of strenght password we create on register</returns>
         public static PasswordStrenght CheckStrength(string password)
         {
             Regex Level3 = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{9,}$");
@@ -229,6 +238,8 @@ namespace BankApplication
             ButtonCheck();
             StrenghtIndicator(PasswordBox.Password);
         }
+        /// <summary>This method setting progress bar on color corresponding to the strength of the password</summary>
+        /// <param name="Input">The input.</param>
         private void StrenghtIndicator(string Input)
         {
             switch (CheckStrength(Input))
@@ -253,6 +264,8 @@ namespace BankApplication
             TextBoxPassStrenght.Text = Convert.ToString(CheckStrength(Input));
         }
 
+        /// <summary>Adds the log to DB about errors in registering.</summary>
+        /// <param name="Id">The identifier.</param>
         public void AddLog(int Id) 
         {
             using (SQLite conn = new SQLite())
@@ -262,26 +275,9 @@ namespace BankApplication
                 conn.SaveChanges();
             }
         }
-        private int ReadId()
-        {
-            int x = 0;
-            using (SQLite ctx = new SQLite())
-            {
-                var query = (from c in ctx.Client
-                             where c.PESEL == TextBoxPESEL.Text
-                             select new
-                             {
-                                 c.Id_User,
-                             }
-                             ).FirstOrDefault();
-
-                if (query != null)
-                {
-                    x = query.Id_User;
-                }
-            }
-            return x;
-        }
+        /// <summary>Tests unique the number acc.</summary>
+        /// <param name="NumberTest">The number test.</param>
+        /// <returns>Return true when number acc exist in DB.</returns>
         private bool TestNumberAcc(string NumberTest)
         {
             using (SQLite conn = new SQLite())
@@ -297,6 +293,9 @@ namespace BankApplication
                 }
             }
         }
+        /// <summary>Tests unique the pesel acc.</summary>
+        /// <param name="PESELTest">The pesel test.</param>
+        /// <returns>Return true when PESEL exist in DB.</returns>
         private bool TestPESELAcc(string PESELTest)
         {
             using (SQLite conn = new SQLite())
@@ -312,6 +311,9 @@ namespace BankApplication
                 }
             }
         }
+        /// <summary>Tests unique the identifier card.</summary>
+        /// <param name="IdTest">The identifier test.</param>
+        /// <returns>Return true when ID Number exist in DB.</returns>
         private bool TestIdCard(string IdTest)
         {
             using (SQLite conn = new SQLite())
@@ -327,6 +329,9 @@ namespace BankApplication
                 }
             }
         }
+        /// <summary>Tests unique the nIckname of user.</summary>
+        /// <param name="NickTest">The nick test.</param>
+        /// <returns>Return true when nickname exist in DB.</returns>
         private bool TestNickName(string NickTest)
         {
             using (SQLite conn = new SQLite())
@@ -342,6 +347,9 @@ namespace BankApplication
                 }
             }
         }
+        /// <summary>Creates the number acc.</summary>
+        /// <param name="Id">The identifier.</param>
+        /// <returns>This method return random number to new account</returns>
         private string CreateNumberAcc(int Id)
         {
         Start:
