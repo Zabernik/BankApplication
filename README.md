@@ -5,9 +5,9 @@ In Future there will be a lot of function.
 For now it's avaible:
 - Log In
 - Registry
+- Make Transfers
 
 Feature:
-- Make Transfers
 - Change password or other data
 - Currency conversion
 
