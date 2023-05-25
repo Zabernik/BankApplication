@@ -37,12 +37,23 @@ namespace BankApplication
             x = x.LoadData(Client.IdUser);
             if (x.Active == false)
             {
+                BlockedSideBar(false);
                 sidebar.SelectedIndex = 6;
             }
             if (x.Active == true)
             {
+                BlockedSideBar(true);
                 sidebar.SelectedIndex = 0;
             }
-        }  
+        }
+        public void BlockedSideBar(bool isEnable)
+        {
+            NavCards.IsEnabled = isEnable;
+            NavCurrency.IsEnabled = isEnable;
+            NavHistory.IsEnabled = isEnable;
+            NavHome.IsEnabled = isEnable;
+            NavProfile.IsEnabled = isEnable;  
+            NavTransfer.IsEnabled = isEnable;
+        }
     }
 }

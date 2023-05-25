@@ -104,7 +104,9 @@ namespace BankApplication.PagesMainWindow
             if (dialogResult == MessageBoxResult.Yes)
             {
                 UpdateData();
-                this.NavigationService.Navigate(new Uri("PagesMainWindow/MainPage.xaml", UriKind.Relative));
+                CloseAllWindows();
+                MainWindow main = new MainWindow();
+                main.Show();
             }
             else if (dialogResult == MessageBoxResult.No)
             {
@@ -353,6 +355,11 @@ namespace BankApplication.PagesMainWindow
                     return false;
                 }
             }
+        }
+        public void CloseAllWindows()
+        {
+            for (int intCounter = App.Current.Windows.Count - 1; intCounter >= 0; intCounter--)
+                App.Current.Windows[intCounter].Hide();
         }
     }
 }
